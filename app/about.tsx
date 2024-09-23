@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { WordListContext } from '@/context/WordListProvider';
 import Screen from '@/components/RootScreen';
 import { TouchableOpacity } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 const About = () => {
-  const { wordList, handleWordList } = useContext(WordListContext);
+  const { wordList, handleRemoveWordFromList } = useContext(WordListContext);
+  const [refreshing, setRefreshing] = useState(false);
 
-  console.log(wordList);
   return (
     <Screen>
       <FlatList

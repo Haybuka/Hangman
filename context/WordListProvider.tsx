@@ -15,7 +15,8 @@ const initialState: wordListsType = [
 
 export const WordListContext = createContext({
   wordList: initialState,
-  handleWordList: (word: wordType) => {},
+  handleAddWordToList: (word: wordType) => {},
+  handleRemoveWordFromList: (word: wordType) => {},
 });
 
 type WordListProp = {
@@ -25,14 +26,20 @@ type WordListProp = {
 const WordListProvider = ({ children }: WordListProp) => {
   const [wordList, setWordList] = useState([] as wordListsType);
 
-  const handleWordList = (word: wordType) => {
+  const handleAddWordToList = (word: wordType) => {
     const newList = [...wordList, word];
+    setWordList(newList);
+  };
+
+  const handleRemoveWordFromList = (removeWord: wordType) => {
+    const newList = wordList.filter((word) => word.word !== removeWord.word);
     setWordList(newList);
   };
 
   const values = {
     wordList,
-    handleWordList,
+    handleAddWordToList,
+    handleRemoveWordFromList,
   };
 
   return (

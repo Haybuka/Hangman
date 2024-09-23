@@ -17,7 +17,7 @@ import Toast from 'react-native-toast-message';
 const Home = () => {
   const guessedCount = 6;
   // context to handle update of the word list
-  const { handleWordList } = useContext(WordListContext);
+  const { handleAddWordToList } = useContext(WordListContext);
 
   const [word, setWord] = useState('');
   const [guessedWord, setGuessedWord] = useState('');
@@ -78,7 +78,7 @@ const Home = () => {
 
     const toUpperCase = word.slice(0, 1).toUpperCase() + word.slice(1);
 
-    handleWordList(dictionaryWord);
+    handleAddWordToList(dictionaryWord);
 
     Toast.show({
       type: 'success',

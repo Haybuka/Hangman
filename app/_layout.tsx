@@ -18,6 +18,8 @@ import { useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import WordListProvider from '@/context/WordListProvider';
+import Toast from 'react-native-toast-message';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   return (
@@ -65,28 +67,31 @@ export default function RootLayout() {
         value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
       >
         {/* <StatusBar backgroundColor={'#000'} /> */}
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <SafeAreaView style={styles.container}>
-            <Drawer drawerContent={CustomDrawerContent}>
-              <Drawer.Screen
-                name="(tab)"
-                options={{
-                  drawerLabel: 'Home',
-                  title: 'Home Screen',
-                  headerShown: false,
-                }}
-              />
-              <Drawer.Screen
-                name="about"
-                options={{
-                  drawerLabel: 'About',
-                  title: 'About Screen',
-                  headerShown: false,
-                }}
-              />
-            </Drawer>
-          </SafeAreaView>
-        </GestureHandlerRootView>
+        <WordListProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <SafeAreaView style={styles.container}>
+              <Drawer drawerContent={CustomDrawerContent}>
+                <Drawer.Screen
+                  name="(tab)"
+                  options={{
+                    drawerLabel: 'Home',
+                    title: 'Home Screen',
+                    headerShown: false,
+                  }}
+                />
+                <Drawer.Screen
+                  name="about"
+                  options={{
+                    drawerLabel: 'About',
+                    title: 'About Screen',
+                    headerShown: false,
+                  }}
+                />
+              </Drawer>
+            </SafeAreaView>
+          </GestureHandlerRootView>
+          <Toast position="top" bottomOffset={20} />
+        </WordListProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

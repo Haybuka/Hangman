@@ -1,11 +1,5 @@
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import alphabets from '@/utils/alphabets';
 import hangmanWords from '@/utils/hangmanWords';
 import ActiveButton from '@/components/ActiveButton';
@@ -17,9 +11,14 @@ import { useGetDefinition } from '@/api';
 import GameOver from '@/components/GameOver';
 import * as Haptics from 'expo-haptics';
 import Button from '@/components/Button';
+import { WordListContext } from '@/context/WordListProvider';
+import Toast from 'react-native-toast-message';
 
 const Home = () => {
   const guessedCount = 6;
+  // context to handle update of the word list
+  const { handleWordList } = useContext(WordListContext);
+
   const [word, setWord] = useState('');
   const [guessedWord, setGuessedWord] = useState('');
   const [wrongWord, setWrongWord] = useState('');
@@ -72,6 +71,19 @@ const Home = () => {
       }
     }
     return wordCounter.length;
+  };
+
+  const handleAddToWordlist = (word: string, meaning: string) => {
+    const dictionaryWord = { word, meaning };
+
+    const toUpperCase = word.slice(0, 1).toUpperCase() + word.slice(1);
+
+    handleWordList(dictionaryWord);
+
+    Toast.show({
+      type: 'success',
+      text1: `${toUpperCase} added.`,
+    });
   };
 
   let isOver = handleWordCount(guessedWord) === handleWordCount(word);
@@ -147,7 +159,14 @@ const Home = () => {
           <ActivityIndicator size="large" color="#29427A" />
         )}
       </View>
-      {isOver && <Button text="Add to Word List" handlePress={() => {}} />}
+      {isOver && (
+        <Button
+          text="Add to Word List"
+          handlePress={() =>
+            handleAddToWordlist(word, wordDefinition ? wordDefinition : '')
+          }
+        />
+      )}
     </View>
   );
 };
@@ -163,7 +182,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: 'bold',
     textAlign: 'center',
     color: '#333',
     textTransform: 'uppercase',

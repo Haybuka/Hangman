@@ -4,7 +4,7 @@ import React from 'react';
 const About = () => {
   return (
     <View>
-      <Text>About tab</Text>
+      <Text>About tab screen</Text>
     </View>
   );
 };

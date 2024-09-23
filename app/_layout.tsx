@@ -16,6 +16,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   return (
@@ -49,27 +50,37 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}>
+      {/* <StatusBar backgroundColor={'#000'} /> */}
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Drawer drawerContent={CustomDrawerContent}>
-          <Drawer.Screen
-            name="(tab)"
-            options={{
-              drawerLabel: 'Home',
-              title: 'Home Screen',
-              headerShown: true,
-            }}
-          />
-          <Drawer.Screen
-            name="about"
-            options={{
-              drawerLabel: 'About',
-              title: 'About Screen',
-              headerShown: false,
-            }}
-          />
-        </Drawer>
+        <SafeAreaView style={styles.container}>
+          <Drawer drawerContent={CustomDrawerContent}>
+            <Drawer.Screen
+              name="(tab)"
+              options={{
+                drawerLabel: 'Home',
+                title: 'Home Screen',
+                headerShown: false,
+              }}
+            />
+            <Drawer.Screen
+              name="about"
+              options={{
+                drawerLabel: 'About',
+                title: 'About Screen',
+                headerShown: false,
+              }}
+            />
+          </Drawer>
+        </SafeAreaView>
       </GestureHandlerRootView>
     </ThemeProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#333',
+  },
+});

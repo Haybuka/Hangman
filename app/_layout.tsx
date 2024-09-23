@@ -17,6 +17,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   return (
@@ -49,32 +50,38 @@ export default function RootLayout() {
     return null;
   }
 
+  const queryClient = new QueryClient();
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}>
-      {/* <StatusBar backgroundColor={'#000'} /> */}
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaView style={styles.container}>
-          <Drawer drawerContent={CustomDrawerContent}>
-            <Drawer.Screen
-              name="(tab)"
-              options={{
-                drawerLabel: 'Home',
-                title: 'Home Screen',
-                headerShown: false,
-              }}
-            />
-            <Drawer.Screen
-              name="about"
-              options={{
-                drawerLabel: 'About',
-                title: 'About Screen',
-                headerShown: false,
-              }}
-            />
-          </Drawer>
-        </SafeAreaView>
-      </GestureHandlerRootView>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider
+        value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
+      >
+        {/* <StatusBar backgroundColor={'#000'} /> */}
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <SafeAreaView style={styles.container}>
+            <Drawer drawerContent={CustomDrawerContent}>
+              <Drawer.Screen
+                name="(tab)"
+                options={{
+                  drawerLabel: 'Home',
+                  title: 'Home Screen',
+                  headerShown: false,
+                }}
+              />
+              <Drawer.Screen
+                name="about"
+                options={{
+                  drawerLabel: 'About',
+                  title: 'About Screen',
+                  headerShown: false,
+                }}
+              />
+            </Drawer>
+          </SafeAreaView>
+        </GestureHandlerRootView>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

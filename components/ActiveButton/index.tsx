@@ -1,7 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
-// import {trigger} from 'react-native-haptic-feedback';
-import { Vibration } from 'react-native';
 
 type ActiveButtonProp = {
   letter: string;
@@ -16,11 +14,6 @@ const ActiveButton = ({
   wrongWord,
   handleLetterGuessing,
 }: ActiveButtonProp) => {
-  const options = {
-    enableVibrateFallback: true,
-    ignoreAndroidSystemSettings: false,
-  };
-
   return (
     <TouchableOpacity
       style={[
@@ -28,8 +21,6 @@ const ActiveButton = ({
         `${guessedWord + wrongWord}`.includes(letter) && styles.guessedLetter,
       ]}
       onPress={() => {
-        // trigger('impactHeavy', options);
-        Vibration.vibrate(100);
         handleLetterGuessing(letter);
       }}
     >

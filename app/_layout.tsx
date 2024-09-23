@@ -22,13 +22,20 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   return (
     <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
+      {/* <DrawerItemList {...props} /> */}
       <DrawerItem
-        onPress={() => {}}
+        onPress={() => props.navigation.navigate('/')}
+        icon={({ color, size }) => (
+          <Feather name="home" color={color} size={size} />
+        )}
+        label={'Home'}
+      />
+      <DrawerItem
+        onPress={() => props.navigation.navigate('about')}
         icon={({ color, size }) => (
           <Feather name="list" color={color} size={size} />
         )}
-        label={'Data Services'}
+        label={'Word List'}
       />
     </DrawerContentScrollView>
   );

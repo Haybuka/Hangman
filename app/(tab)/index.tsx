@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useGetDefinition } from '@/api';
 import GameOver from '@/components/GameOver';
 import * as Haptics from 'expo-haptics';
+import Button from '@/components/Button';
 
 const Home = () => {
   const guessedCount = 6;
@@ -141,18 +142,12 @@ const Home = () => {
       )}
       <View>
         {!isGenerating ? (
-          <TouchableOpacity style={styles.btn} onPress={generateWord}>
-            <Text>Generate Word</Text>
-          </TouchableOpacity>
+          <Button text="New Word" handlePress={generateWord} />
         ) : (
           <ActivityIndicator size="large" color="#29427A" />
         )}
       </View>
-      {isOver && (
-        <TouchableOpacity style={[styles.btn, { marginVertical: 4 }]}>
-          <Text>Add Word To list</Text>
-        </TouchableOpacity>
-      )}
+      {isOver && <Button text="Add to Word List" handlePress={() => {}} />}
     </View>
   );
 };

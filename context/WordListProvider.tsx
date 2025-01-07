@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import Toast from 'react-native-toast-message';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type wordType = {
   word: string;
@@ -37,6 +38,7 @@ const WordListProvider = ({ children }: WordListProp) => {
     } else {
       const toUpperCase =
         word?.word.slice(0, 1).toUpperCase() + word.word.slice(1);
+
       const newList = [word, ...wordList];
       setWordList(newList);
       Toast.show({

@@ -78,12 +78,18 @@ const Home = () => {
 
     const toUpperCase = word.slice(0, 1).toUpperCase() + word.slice(1);
 
-    handleAddWordToList(dictionaryWord);
-
-    Toast.show({
-      type: 'success',
-      text1: `${toUpperCase} added.`,
-    });
+    if (word !== '') {
+      handleAddWordToList(dictionaryWord);
+      Toast.show({
+        type: 'success',
+        text1: `${toUpperCase} added.`,
+      });
+    } else {
+      Toast.show({
+        type: 'error',
+        text1: `Entry not valid.`,
+      });
+    }
   };
 
   let isOver = handleWordCount(guessedWord) === handleWordCount(word);

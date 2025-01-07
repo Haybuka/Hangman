@@ -3,12 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import { DicitonaryList } from './type';
 
 const getDefinition = async (word: string): Promise<DicitonaryList> => {
-  console.log(word, 'word');
   const request = await axios.get(
     `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
   );
-
-  console.log(request, 'request');
 
   return request.data;
 };

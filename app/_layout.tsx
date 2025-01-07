@@ -26,7 +26,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
     <DrawerContentScrollView {...props}>
       {/* <DrawerItemList {...props} /> */}
       <DrawerItem
-        onPress={() => props.navigation.navigate('index')}
+        onPress={() => props.navigation.navigate('(tab)')}
         icon={({ color, size }) => (
           <Feather name="home" color={color} size={size} />
         )}

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
 import React, { useContext, useState } from 'react';
 import { WordListContext } from '@/context/WordListProvider';
 import Screen from '@/components/RootScreen';
@@ -9,14 +9,20 @@ const About = () => {
   const { wordList, handleRemoveWordFromList } = useContext(WordListContext);
   const [refreshing, setRefreshing] = useState(false);
 
+  console.log(wordList);
   return (
     <Screen>
+      <Text>About Hangman</Text>
       <FlatList
         data={wordList}
+        style={styles.flatListStyle}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.wordContainer}>
+          <View style={styles.wordContainer}>
             <Text style={styles.word}>{item.word}</Text>
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.viewButton}>
+              <Text style={styles.viewText}>View</Text>
+            </TouchableOpacity>
+          </View>
         )}
       />
     </Screen>
@@ -26,19 +32,33 @@ const About = () => {
 export default About;
 
 const styles = StyleSheet.create({
+  flatListStyle: {
+    marginVertical: 10,
+  },
   wordContainer: {
     marginVertical: 4,
-    elevation: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 10,
-      height: 10,
-    },
-    shadowOpacity: 1,
+    borderColor: '#000',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  viewButton: {
+    borderWidth: 1,
+    borderRadius: 40,
+    padding: 6,
+    paddingHorizontal: 20,
+  },
+  viewText: {
+    textAlign: 'center',
+    color: '#000',
   },
   word: {
     textTransform: 'capitalize',
     fontWeight: 'bold',
     fontSize: 18,
+    paddingVertical: 6,
   },
 });

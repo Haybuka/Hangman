@@ -33,7 +33,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
         label={'Home'}
       />
       <DrawerItem
-        onPress={() => props.navigation.navigate('about')}
+        onPress={() => props.navigation.navigate('about/index')}
         icon={({ color, size }) => (
           <Feather name="list" color={color} size={size} />
         )}
@@ -80,7 +80,7 @@ export default function RootLayout() {
                   }}
                 />
                 <Drawer.Screen
-                  name="about"
+                  name="about/index"
                   options={{
                     drawerLabel: 'About',
                     title: 'About Screen',

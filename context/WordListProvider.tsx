@@ -28,18 +28,20 @@ const WordListProvider = ({ children }: WordListProp) => {
   const [wordList, setWordList] = useState([] as wordListsType);
 
   const handleAddWordToList = (word: wordType) => {
-    // check if word exists
-    console.log(word, 'word');
-
     const wordExists = wordList.filter((w) => w?.word === word?.word);
-    console.log(wordExists, 'exists');
-    if (!wordExists || word.word !== '') {
-      const newList = [word, ...wordList];
-      setWordList(newList);
-    } else {
+    if (wordExists.length >= 1) {
       Toast.show({
         type: 'success',
         text1: `Word Exists`,
+      });
+    } else {
+      const toUpperCase =
+        word?.word.slice(0, 1).toUpperCase() + word.word.slice(1);
+      const newList = [word, ...wordList];
+      setWordList(newList);
+      Toast.show({
+        type: 'success',
+        text1: `${toUpperCase} added.`,
       });
     }
   };

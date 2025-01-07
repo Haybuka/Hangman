@@ -76,14 +76,8 @@ const Home = () => {
   const handleAddToWordlist = (word: string, meaning: string) => {
     const dictionaryWord = { word, meaning };
 
-    const toUpperCase = word.slice(0, 1).toUpperCase() + word.slice(1);
-
     if (word !== '') {
       handleAddWordToList(dictionaryWord);
-      Toast.show({
-        type: 'success',
-        text1: `${toUpperCase} added.`,
-      });
     } else {
       Toast.show({
         type: 'error',

@@ -8,7 +8,7 @@ type ButtonProp = {
 const Button = ({ handlePress, text }: ButtonProp) => {
   return (
     <TouchableOpacity style={styles.btn} onPress={handlePress}>
-      <Text>{text}</Text>
+      <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
 };
@@ -17,7 +17,7 @@ export default Button;
 
 const styles = StyleSheet.create({
   btn: {
-    elevation: 4,
+    elevation: 2,
     backgroundColor: '#fff',
     padding: 10,
     marginVertical: 4,
@@ -26,5 +26,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+  },
+  text: {
+    fontFamily: 'Poppins',
   },
 });

@@ -10,13 +10,14 @@ import { Feather } from '@expo/vector-icons';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import WordListProvider from '@/context/WordListProvider';
 import Toast from 'react-native-toast-message';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
+  const navigation = useNavigation();
   return (
     <DrawerContentScrollView {...props}>
-      {/* <DrawerItemList {...props} /> */}
       <DrawerItem
-        onPress={() => props.navigation.navigate('(tab)')}
+        onPress={() => navigation.goBack()}
         icon={({ color, size }) => (
           <Feather name="home" color={color} size={size} />
         )}
@@ -40,8 +41,8 @@ export default function RootLayout() {
           <Drawer.Screen
             name="(tab)"
             options={{
-              drawerLabel: 'Home',
-              title: 'Home Screen',
+              drawerLabel: 'Hangman',
+              title: 'Game Screen',
               headerShown: false,
             }}
           />

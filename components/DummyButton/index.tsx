@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
   },
   letter: {
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: 600,
     textTransform: 'uppercase',
+    fontFamily: 'Poppins',
   },
 });

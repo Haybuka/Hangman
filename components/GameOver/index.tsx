@@ -20,12 +20,13 @@ const styles = StyleSheet.create({
     // fontSize: 22,
     textAlign: 'center',
     fontWeight: '600',
+    fontFamily: 'SpaceMono',
   },
   correctLetter: {
-    // color: 'green',
     fontSize: 22,
     textAlign: 'center',
     textTransform: 'uppercase',
     fontWeight: '500',
+    fontFamily: 'Poppins',
   },
 });

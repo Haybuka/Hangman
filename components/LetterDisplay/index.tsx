@@ -37,12 +37,13 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 10,
+    paddingBottom: 8,
     textAlign: 'center',
   },
   letter: {
     fontSize: 18,
     fontWeight: '400',
     textTransform: 'uppercase',
+    fontFamily: 'Poppins',
   },
 });

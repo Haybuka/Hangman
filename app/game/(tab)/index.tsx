@@ -106,7 +106,7 @@ const Home = () => {
           {wrongGuess !== guessedCount && (
             <>
               <Icon name={'heart'} size={20} color="red" />
-              <Text>
+              <Text style={styles.liveCount}>
                 {wrongGuess} / {guessedCount}
               </Text>
             </>
@@ -182,21 +182,26 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 20,
-    fontWeight: 'bold',
     textAlign: 'center',
     color: '#333',
     textTransform: 'uppercase',
+    fontFamily: 'Poppins',
   },
   subheading: {
     marginVertical: 10,
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 14,
     color: '#333',
+    fontFamily: 'SpaceMono',
   },
   winner: {
     color: 'green',
     fontSize: 22,
     fontWeight: '600',
+    fontFamily: 'Poppins',
+  },
+  liveCount: {
+    fontFamily: 'Poppins',
   },
   textContainer: { alignItems: 'center', gap: 10 },
   wordContainer: {

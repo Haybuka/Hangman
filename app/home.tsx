@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import Screen from '@/components/RootScreen';
 import { TouchableOpacity } from 'react-native';
+import { Link } from 'expo-router';
 
 const HomeScreen = (props: any) => {
-  const handleStartGame = () => {};
   return (
     <Screen>
       <View style={styles.heading}>
@@ -15,7 +15,9 @@ const HomeScreen = (props: any) => {
       <View>
         <View style={styles.buttonGroup}>
           <TouchableOpacity style={styles.button}>
-            <Text style={[styles.buttonText, styles.boldText]}>Start Game</Text>
+            <Link href="/game" style={[styles.buttonText, styles.boldText]}>
+              Start Game
+            </Link>
           </TouchableOpacity>
         </View>
         <View style={styles.buttonGroup}>
@@ -41,17 +43,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     textTransform: 'uppercase',
-    fontWeight: 600,
+    fontWeight: 400,
     letterSpacing: 3,
     textAlign: 'center',
-    marginVertical: 6,
+    fontFamily: 'Poppins',
   },
   subtitle: {
-    fontSize: 16,
-    textTransform: 'uppercase',
-    fontWeight: 600,
+    fontSize: 14,
     letterSpacing: 3,
     textAlign: 'center',
+    fontFamily: 'Poppins',
   },
   imgBox: {
     marginVertical: 10,
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: '#000',
+    fontFamily: 'Poppins',
   },
   boldText: {
     fontWeight: 500,

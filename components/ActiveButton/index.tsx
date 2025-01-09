@@ -42,7 +42,7 @@ export default ActiveButton;
 const styles = StyleSheet.create({
   alphabet: {
     backgroundColor: '#fff',
-    elevation: 4,
+    elevation: 3,
     padding: 4,
     width: 45,
     height: 45,
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
   },
   letter: {
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: 500,
     textTransform: 'uppercase',
+    fontFamily: 'Poppins',
   },
 });

@@ -37,13 +37,12 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <ThemeProvider
+        value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
+      >
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <Stack
-            initialRouteName="index"
-            screenOptions={{ headerShown: false }}
-          >
-            <Stack.Screen name="index" />
+          <Stack initialRouteName="home" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="home" />
             <Stack.Screen name="game" />
             <Stack.Screen name="about" />
             <Stack.Screen name="+not-found" />

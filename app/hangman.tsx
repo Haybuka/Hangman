@@ -22,10 +22,11 @@ import { WordListContext } from '@/context/WordListProvider';
 import Toast from 'react-native-toast-message';
 import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { Link, useNavigation } from 'expo-router';
 
 const Home = () => {
   const guessedCount = 6;
-  // context to handle update of the word list
+  const navigation = useNavigation();
   const { handleAddWordToList } = useContext(WordListContext);
 
   const [word, setWord] = useState('');
@@ -70,6 +71,9 @@ const Home = () => {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    generateWord();
+  }, []);
   const handleWordCount = (wordUsed: string) => {
     let wordCounter = '';
     for (let index = 0; index < wordUsed.length; index++) {
@@ -100,7 +104,6 @@ const Home = () => {
     handleGuessCount(word);
   }, [word]);
 
-  const handleBackPress = () => {};
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Hang Man {word}</Text>
@@ -171,7 +174,9 @@ const Home = () => {
       )}
       <View style={styles.btnGroup}>
         <TouchableOpacity style={styles.homeIcon}>
-          <Feather name="home" color={'black'} size={20} />
+          <Link href={'/'}>
+            <Feather name="home" color={'black'} size={20} />
+          </Link>
         </TouchableOpacity>
         {!isGenerating ? (
           <Button text="New Word" handlePress={generateWord} />

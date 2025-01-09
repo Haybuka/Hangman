@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import React from 'react';
 
 type ButtonProp = {
@@ -17,7 +23,6 @@ export default Button;
 
 const styles = StyleSheet.create({
   btn: {
-    elevation: 2,
     backgroundColor: '#fff',
     padding: 10,
     marginVertical: 4,
@@ -26,6 +31,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+    ...Platform.select({
+      ios: {
+        shadowOffset: { width: 3, height: 3 },
+        shadowOpacity: 1,
+        shadowColor: '#3333333d',
+        shadowRadius: 1,
+      },
+      android: {
+        elevation: 2,
+      },
+      default: {
+        height: 500,
+      },
+    }),
   },
   text: {
     fontFamily: 'Poppins',

@@ -9,9 +9,11 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Toast from 'react-native-toast-message';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'react-native-reanimated';
+import WordListProvider from '@/context/WordListProvider';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -37,21 +39,25 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider
-        value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
-      >
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <Stack
-            initialRouteName="index"
-            screenOptions={{ headerShown: false }}
-          >
-            <Stack.Screen name="index" />
-            <Stack.Screen name="hangman" />
-            <Stack.Screen name="about" />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </GestureHandlerRootView>
-      </ThemeProvider>
+      <WordListProvider>
+        <ThemeProvider
+          value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
+        >
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <Stack
+              initialRouteName="index"
+              screenOptions={{ headerShown: false }}
+            >
+              <Stack.Screen name="index" />
+              <Stack.Screen name="hangman" />
+              <Stack.Screen name="about" />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+          </GestureHandlerRootView>
+        </ThemeProvider>
+      </WordListProvider>
+
+      <Toast position="top" bottomOffset={20} />
     </QueryClientProvider>
   );
 }

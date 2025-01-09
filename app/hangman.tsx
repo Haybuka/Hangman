@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -83,7 +84,6 @@ const Home = () => {
 
   const handleAddToWordlist = (word: string, meaning: string) => {
     const dictionaryWord = { word, meaning };
-
     if (word !== '') {
       handleAddWordToList(dictionaryWord);
     } else {
@@ -244,17 +244,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   homeIcon: {
-    // position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-    shadowOffset: { width: 3, height: 3 },
-    shadowOpacity: 0.5,
-    shadowColor: '#333',
-    shadowRadius: 1,
+
     borderRadius: 20,
     backgroundColor: 'white',
-    elevation: 4,
+
+    ...Platform.select({
+      ios: {
+        shadowOffset: { width: 3, height: 3 },
+        shadowOpacity: 0.5,
+        shadowColor: '#33333361',
+        shadowRadius: 1,
+      },
+      android: {
+        elevation: 4,
+      },
+      default: {
+        height: 500,
+      },
+    }),
   },
   btn: {
     elevation: 4,

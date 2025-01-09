@@ -6,7 +6,26 @@ import { TouchableOpacity } from 'react-native';
 const HomeScreen = () => {
   return (
     <Screen>
-      <Text>Hangman - Home</Text>
+      <View style={styles.heading}>
+        <Text style={styles.title}>Hangman</Text>
+        <Text style={styles.subtitle}>Word Puzzle Game</Text>
+      </View>
+      <View style={styles.imgBox}></View>
+      <View>
+        <View style={styles.buttonGroup}>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Start Game</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonGroup}>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>How To Play</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>High Scores</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </Screen>
   );
 };
@@ -14,28 +33,43 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  flatListStyle: {
-    marginVertical: 10,
-  },
-  wordContainer: {
+  heading: {
     marginVertical: 4,
-    borderColor: '#000',
     paddingVertical: 10,
-    borderBottomWidth: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
-  viewButton: {
+  title: {
+    fontSize: 25,
+    textTransform: 'uppercase',
+    fontWeight: 600,
+    letterSpacing: 3,
+    textAlign: 'center',
+    marginVertical: 6,
+  },
+  subtitle: {
+    fontSize: 16,
+    textTransform: 'uppercase',
+    fontWeight: 600,
+    letterSpacing: 3,
+    textAlign: 'center',
+  },
+  imgBox: {},
+  button: {
     borderWidth: 1,
     borderRadius: 40,
-    padding: 6,
-    paddingHorizontal: 20,
+    padding: 10,
+    elevation: 4,
+    backgroundColor: '#fff',
+    flex: 1,
   },
-  viewText: {
+  buttonText: {
     textAlign: 'center',
     color: '#000',
+  },
+  buttonGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+    gap: 5,
   },
   word: {
     textTransform: 'capitalize',

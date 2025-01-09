@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import Constants from 'expo-constants';
 // import ArrowBack from '../assets/icon/ArrowBack';
 

@@ -43,7 +43,7 @@ const WordListProvider = ({ children }: WordListProp) => {
 
         const newList = [word, ...wordList];
 
-        await setStorageItem('@Word_list', JSON.stringify(newList));
+        await setStorageItem('@Word_list', JSON.stringify({ newList }));
 
         setWordList(newList);
         Toast.show({

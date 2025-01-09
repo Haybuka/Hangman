@@ -1,35 +1,17 @@
 import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
 import React, { useContext, useState } from 'react';
-import { WordListContext } from '@/context/WordListProvider';
 import Screen from '@/components/RootScreen';
 import { TouchableOpacity } from 'react-native';
-import Toast from 'react-native-toast-message';
 
-const About = () => {
-  const { wordList, handleRemoveWordFromList } = useContext(WordListContext);
-  const [refreshing, setRefreshing] = useState(false);
-
-  console.log(wordList);
+const HomeScreen = () => {
   return (
     <Screen>
-      <Text>About Hangman</Text>
-      <FlatList
-        data={wordList}
-        style={styles.flatListStyle}
-        renderItem={({ item }) => (
-          <View style={styles.wordContainer}>
-            <Text style={styles.word}>{item.word}</Text>
-            <TouchableOpacity style={styles.viewButton}>
-              <Text style={styles.viewText}>View</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+      <Text>Hangman - Home</Text>
     </Screen>
   );
 };
 
-export default About;
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   flatListStyle: {

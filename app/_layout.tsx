@@ -1,11 +1,3 @@
-import { Drawer } from 'expo-router/drawer';
-import {
-  DrawerContentComponentProps,
-  DrawerContentScrollView,
-  DrawerItem,
-  DrawerItemList,
-} from '@react-navigation/drawer';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   DarkTheme,
   DefaultTheme,
@@ -14,34 +6,16 @@ import {
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { Feather } from '@expo/vector-icons';
-import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import WordListProvider from '@/context/WordListProvider';
-import Toast from 'react-native-toast-message';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-const CustomDrawerContent = (props: DrawerContentComponentProps) => {
-  return (
-    <DrawerContentScrollView {...props}>
-      {/* <DrawerItemList {...props} /> */}
-      <DrawerItem
-        onPress={() => props.navigation.navigate('(tab)')}
-        icon={({ color, size }) => (
-          <Feather name="home" color={color} size={size} />
-        )}
-        label={'Home'}
-      />
-      <DrawerItem
-        onPress={() => props.navigation.navigate('about/index')}
-        icon={({ color, size }) => (
-          <Feather name="list" color={color} size={size} />
-        )}
-        label={'Word List'}
-      />
-    </DrawerContentScrollView>
-  );
-};
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import 'react-native-reanimated';
+
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
@@ -63,43 +37,19 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider
-        value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
-      >
-        {/* <StatusBar backgroundColor={'#000'} /> */}
-        <WordListProvider>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
-              <Drawer drawerContent={CustomDrawerContent}>
-                <Drawer.Screen
-                  name="(tab)"
-                  options={{
-                    drawerLabel: 'Home',
-                    title: 'Home Screen',
-                    headerShown: false,
-                  }}
-                />
-                <Drawer.Screen
-                  name="about/index"
-                  options={{
-                    drawerLabel: 'About',
-                    title: 'About Screen',
-                    headerShown: false,
-                  }}
-                />
-              </Drawer>
-            </SafeAreaView>
-          </GestureHandlerRootView>
-          <Toast position="top" bottomOffset={20} />
-        </WordListProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Stack
+            initialRouteName="index"
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name="index" />
+            <Stack.Screen name="game" />
+            <Stack.Screen name="AboutScreen" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </GestureHandlerRootView>
       </ThemeProvider>
     </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#333',
-  },
-});

@@ -15,7 +15,7 @@ const HomeScreen = (props: any) => {
       <View>
         <View style={styles.buttonGroup}>
           <TouchableOpacity style={styles.button}>
-            <Link href="/game" style={[styles.buttonText, styles.boldText]}>
+            <Link href="/hangman" style={[styles.buttonText, styles.boldText]}>
               Start Game
             </Link>
           </TouchableOpacity>

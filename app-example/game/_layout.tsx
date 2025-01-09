@@ -37,7 +37,7 @@ export default function RootLayout() {
   return (
     <WordListProvider>
       <SafeAreaView style={styles.container}>
-        <Drawer drawerContent={CustomDrawerContent}>
+        <Drawer drawerContent={CustomDrawerContent} initialRouteName="(tab)">
           <Drawer.Screen
             name="(tab)"
             options={{

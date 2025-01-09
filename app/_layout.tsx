@@ -41,9 +41,12 @@ export default function RootLayout() {
         value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
       >
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <Stack initialRouteName="home" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="home" />
-            <Stack.Screen name="game" />
+          <Stack
+            initialRouteName="index"
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name="index" />
+            <Stack.Screen name="hangman" />
             <Stack.Screen name="about" />
             <Stack.Screen name="+not-found" />
           </Stack>

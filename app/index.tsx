@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
-import React, { useContext, useState } from 'react';
+import React from 'react';
+import { StyleSheet, Text, View, Platform } from 'react-native';
 import Screen from '@/components/RootScreen';
 import { TouchableOpacity } from 'react-native';
 
-const HomeScreen = () => {
+const HomeScreen = (props: any) => {
+  const handleStartGame = () => {};
   return (
     <Screen>
       <View style={styles.heading}>
@@ -14,7 +15,7 @@ const HomeScreen = () => {
       <View>
         <View style={styles.buttonGroup}>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Start Game</Text>
+            <Text style={[styles.buttonText, styles.boldText]}>Start Game</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.buttonGroup}>
@@ -52,18 +53,34 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
     textAlign: 'center',
   },
-  imgBox: {},
+  imgBox: {
+    marginVertical: 10,
+    ...Platform.select({
+      ios: {
+        height: 500,
+      },
+      android: {
+        height: 400,
+      },
+      default: {
+        height: 500,
+      },
+    }),
+  },
   button: {
     borderWidth: 1,
     borderRadius: 40,
     padding: 10,
-    elevation: 4,
     backgroundColor: '#fff',
     flex: 1,
   },
   buttonText: {
     textAlign: 'center',
     color: '#000',
+  },
+  boldText: {
+    fontWeight: 500,
+    fontSize: 16,
   },
   buttonGroup: {
     flexDirection: 'row',

@@ -161,13 +161,6 @@ const Home = () => {
           )}
         </View>
       )}
-      <View>
-        {!isGenerating ? (
-          <Button text="New Word" handlePress={generateWord} />
-        ) : (
-          <ActivityIndicator size="large" color="#29427A" />
-        )}
-      </View>
       {isOver && (
         <Button
           text="Add to Word List"
@@ -176,10 +169,16 @@ const Home = () => {
           }
         />
       )}
-
-      <TouchableOpacity style={styles.homeIcon}>
-        <Feather name="home" color={'black'} size={20} />
-      </TouchableOpacity>
+      <View style={styles.btnGroup}>
+        <TouchableOpacity style={styles.homeIcon}>
+          <Feather name="home" color={'black'} size={20} />
+        </TouchableOpacity>
+        {!isGenerating ? (
+          <Button text="New Word" handlePress={generateWord} />
+        ) : (
+          <ActivityIndicator size="large" color="#29427A" />
+        )}
+      </View>
     </View>
   );
 };
@@ -187,12 +186,18 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
+  btnGroup: {
+    flexDirection: 'row',
+    gap: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
   container: {
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    // backgroundColor: '#fff',
   },
   heading: {
     fontSize: 20,
@@ -238,7 +243,19 @@ const styles = StyleSheet.create({
     marginVertical: 50,
     justifyContent: 'center',
   },
-  homeIcon: {},
+  homeIcon: {
+    // position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 0.5,
+    shadowColor: '#333',
+    shadowRadius: 1,
+    borderRadius: 20,
+    backgroundColor: 'white',
+    elevation: 4,
+  },
   btn: {
     elevation: 4,
     backgroundColor: '#fff',

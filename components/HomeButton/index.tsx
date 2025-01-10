@@ -1,15 +1,19 @@
 import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 
 const HomeIcon = () => {
+  const router = useRouter();
   return (
-    <TouchableOpacity style={styles.homeIcon}>
-      <Link href={'/'}>
+    <TouchableOpacity
+      style={styles.homeIcon}
+      onPress={() => router.navigate('/')}
+    >
+      <View>
         <Feather name="home" color={'black'} size={20} />
-      </Link>
+      </View>
     </TouchableOpacity>
   );
 };

@@ -1,35 +1,66 @@
-import React, { useCallback, useMemo, useRef } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
+import BottomSheet, {
+  BottomSheetFlatList,
+  BottomSheetModal,
+  BottomSheetView,
+} from '@gorhom/bottom-sheet';
+import gamerules from '@/utils/gamerules';
+import { Feather } from '@expo/vector-icons';
+
+type ItemProps = { rule: string; id: string };
 
 const BottomSheetDrop = () => {
+  const [modalState, setModalState] = useState(false);
   // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    if (modalState) {
+      bottomSheetModalRef.current?.close();
+    } else {
+      bottomSheetModalRef.current?.present();
+    }
   }, []);
 
-  // renders
+  const handleClosePress = useCallback(() => {
+    bottomSheetModalRef.current?.close();
+    setModalState(false);
+  }, []);
+  const Item = ({ rule }: ItemProps) => (
+    <View>
+      <Text>{rule}</Text>
+    </View>
+  );
+
   return (
     <View>
       <TouchableOpacity style={styles.button} onPress={handlePresentModalPress}>
         <Text style={styles.buttonText}>How To Play</Text>
       </TouchableOpacity>
-      <BottomSheetModal ref={bottomSheetModalRef} onChange={handleSheetChanges}>
+
+      <BottomSheetModal ref={bottomSheetModalRef}>
         <BottomSheetView style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
-          <Text>Awesome 🎉</Text>
-          <Text>Awesome 🎉</Text>
-          <Text>Awesome 🎉</Text>
-          <Text>Awesome 🎉</Text>
-          <Text>Awesome 🎉</Text>
-          <Text>Awesome 🎉</Text>
-          <Text>Awesome 🎉</Text>
+          <View>
+            <Pressable onPress={() => handleClosePress()}>
+              <Feather name="x" color={'black'} size={20} />
+            </Pressable>
+            <Text style={styles.heading}>Rules</Text>
+          </View>
+          <BottomSheetFlatList
+            data={gamerules}
+            keyExtractor={(item) => item.rule}
+            renderItem={({ item }) => <Item rule={item.rule} id={item.rule} />}
+            contentContainerStyle={styles.contentContainer}
+          />
         </BottomSheetView>
       </BottomSheetModal>
     </View>
@@ -37,16 +68,17 @@ const BottomSheetDrop = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // padding: 24,
-    // justifyContent: 'center',
-    // backgroundColor: 'grey',
-  },
   contentContainer: {
-    // flex: 1,
-    // alignItems: 'center',
     height: 400,
+    padding: 10,
+  },
+
+  heading: {
+    fontSize: 16,
+    textTransform: 'uppercase',
+    fontFamily: 'Poppins',
+    letterSpacing: 2,
+    textAlign: 'center',
   },
   button: {
     borderWidth: 1,
@@ -59,6 +91,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#000',
     fontFamily: 'Poppins',
+  },
+
+  itemContainer: {
+    padding: 6,
+    margin: 6,
+    backgroundColor: '#eee',
   },
 });
 

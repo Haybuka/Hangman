@@ -36,8 +36,8 @@ const BottomSheetDrop = () => {
     setModalState(false);
   }, []);
   const Item = ({ rule }: ItemProps) => (
-    <View>
-      <Text>{rule}</Text>
+    <View style={styles.itemContainer}>
+      <Text style={styles.itemText}>{rule}</Text>
     </View>
   );
 
@@ -60,6 +60,9 @@ const BottomSheetDrop = () => {
             keyExtractor={(item) => item.rule}
             renderItem={({ item }) => <Item rule={item.rule} id={item.rule} />}
             contentContainerStyle={styles.contentContainer}
+            bounces
+            alwaysBounceVertical
+            bouncesZoom
           />
         </BottomSheetView>
       </BottomSheetModal>
@@ -69,7 +72,6 @@ const BottomSheetDrop = () => {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    height: 400,
     padding: 10,
   },
 
@@ -95,8 +97,10 @@ const styles = StyleSheet.create({
 
   itemContainer: {
     padding: 6,
-    margin: 6,
-    backgroundColor: '#eee',
+    marginVertical: 6,
+  },
+  itemText: {
+    fontSize: 16,
   },
 });
 

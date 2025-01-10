@@ -1,11 +1,4 @@
-import {
-  ActivityIndicator,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import alphabets from '@/utils/alphabets';
 import hangmanWords from '@/utils/hangmanWords';
@@ -20,13 +13,11 @@ import * as Haptics from 'expo-haptics';
 import Button from '@/components/Button';
 import { WordListContext } from '@/context/WordListProvider';
 import Toast from 'react-native-toast-message';
-import { TouchableOpacity } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import { Link, useNavigation } from 'expo-router';
+import HomeIcon from '@/components/HomeButton';
+import { hangmanStyles } from '@/styles/hangman';
 
 const Home = () => {
   const guessedCount = 6;
-  const navigation = useNavigation();
   const { handleAddWordToList } = useContext(WordListContext);
 
   const [word, setWord] = useState('');
@@ -105,20 +96,20 @@ const Home = () => {
   }, [word]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>Hang Man {word}</Text>
-      <View style={[styles.subheading, styles.textContainer]}>
+    <View style={hangmanStyles.container}>
+      <Text style={hangmanStyles.heading}>Hang Man {word}</Text>
+      <View style={[hangmanStyles.subheading, hangmanStyles.textContainer]}>
         {wrongGuess === guessedCount && <GameOver word={word} />}
 
         {handleWordCount(guessedWord) === handleWordCount(word) && (
-          <Text style={[styles.winner]}> Winner</Text>
+          <Text style={[hangmanStyles.winner]}> Winner</Text>
         )}
 
-        <View style={styles.iconContainer}>
+        <View style={hangmanStyles.iconContainer}>
           {wrongGuess !== guessedCount && (
             <>
               <Icon name={'heart'} size={20} color="red" />
-              <Text style={styles.liveCount}>
+              <Text style={hangmanStyles.liveCount}>
                 {wrongGuess} / {guessedCount}
               </Text>
             </>
@@ -129,7 +120,7 @@ const Home = () => {
       {!isOver && (
         <View>
           {isFetched ? (
-            <Text style={styles.subheading}>
+            <Text style={hangmanStyles.subheading}>
               Hints : {wordDefinition ? wordDefinition : 'OOps, no hint found'}
             </Text>
           ) : (
@@ -140,7 +131,7 @@ const Home = () => {
       {handleWordCount(guessedWord) !== handleWordCount(word) && (
         <View>
           {word && (
-            <View style={styles.alphabetContainer}>
+            <View style={hangmanStyles.alphabetContainer}>
               {alphabets.map(({ letter }, id) =>
                 !totalLetters.includes(letter) &&
                 wrongGuess !== guessedCount ? (
@@ -172,12 +163,8 @@ const Home = () => {
           }
         />
       )}
-      <View style={styles.btnGroup}>
-        <TouchableOpacity style={styles.homeIcon}>
-          <Link href={'/'}>
-            <Feather name="home" color={'black'} size={20} />
-          </Link>
-        </TouchableOpacity>
+      <View style={hangmanStyles.btnGroup}>
+        <HomeIcon />
         {!isGenerating ? (
           <Button text="New Word" handlePress={generateWord} />
         ) : (
@@ -189,91 +176,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  btnGroup: {
-    flexDirection: 'row',
-    gap: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  container: {
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  heading: {
-    fontSize: 20,
-    textAlign: 'center',
-    color: '#333',
-    textTransform: 'uppercase',
-    fontFamily: 'Poppins',
-  },
-  subheading: {
-    marginVertical: 10,
-    textAlign: 'center',
-    fontSize: 14,
-    color: '#333',
-    fontFamily: 'SpaceMono',
-  },
-  winner: {
-    color: 'green',
-    fontSize: 22,
-    fontWeight: '600',
-    fontFamily: 'Poppins',
-  },
-  liveCount: {
-    fontFamily: 'Poppins',
-  },
-  textContainer: { alignItems: 'center', gap: 10 },
-  wordContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  iconContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 10,
-  },
-
-  alphabetContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginVertical: 50,
-    justifyContent: 'center',
-  },
-  homeIcon: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-
-    borderRadius: 20,
-    backgroundColor: 'white',
-
-    ...Platform.select({
-      ios: {
-        shadowOffset: { width: 3, height: 3 },
-        shadowOpacity: 0.5,
-        shadowColor: '#33333361',
-        shadowRadius: 1,
-      },
-      android: {
-        elevation: 4,
-      },
-      default: {
-        height: 500,
-      },
-    }),
-  },
-  btn: {
-    elevation: 4,
-    backgroundColor: '#fff',
-    padding: 10,
-  },
-});

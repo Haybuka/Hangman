@@ -26,9 +26,11 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
         <View style={homeStyles.buttonGroup}>
-          {/* <TouchableOpacity style={homeStyles.button}>
-            <Text style={homeStyles.buttonText}>How To Play</Text>
-          </TouchableOpacity> */}
+          <TouchableOpacity style={homeStyles.button}>
+            <Link href="/about" style={[homeStyles.buttonText]}>
+              Word List
+            </Link>
+          </TouchableOpacity>
           <BottomSheetDrop />
 
           <TouchableOpacity style={homeStyles.button}>

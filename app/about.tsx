@@ -4,6 +4,7 @@ import { WordListContext } from '@/context/WordListProvider';
 import Screen from '@/components/RootScreen';
 import { TouchableOpacity } from 'react-native';
 import Toast from 'react-native-toast-message';
+import HomeIcon from '@/components/HomeButton';
 
 const About = () => {
   const { wordList, handleRemoveWordFromList } = useContext(WordListContext);
@@ -12,7 +13,12 @@ const About = () => {
   console.log(wordList);
   return (
     <Screen>
-      <Text>About Hangman</Text>
+      <View style={styles.headerContainer}>
+        <HomeIcon />
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Word List</Text>
+        </View>
+      </View>
       <FlatList
         data={wordList}
         style={styles.flatListStyle}
@@ -32,6 +38,22 @@ const About = () => {
 export default About;
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  header: {
+    flex: 1,
+  },
+  headerText: {
+    textAlign: 'center',
+    fontSize: 18,
+    textTransform: 'uppercase',
+    fontWeight: 400,
+    letterSpacing: 3,
+    color: '#333',
+    fontFamily: 'Poppins',
+  },
   flatListStyle: {
     marginVertical: 10,
   },

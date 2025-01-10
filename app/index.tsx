@@ -1,31 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { Text, View } from 'react-native';
 import Screen from '@/components/RootScreen';
 import { TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
+import { homeStyles } from '@/styles/home';
+import BottomSheetDrop from '@/components/BottomSheetModal';
 
-const HomeScreen = (props: any) => {
+const HomeScreen = () => {
   return (
     <Screen>
-      <View style={styles.heading}>
-        <Text style={styles.title}>Hangman</Text>
-        <Text style={styles.subtitle}>Word Puzzle Game</Text>
+      <View style={homeStyles.heading}>
+        <Text style={homeStyles.title}>Hangman</Text>
+        <Text style={homeStyles.subtitle}>Word Puzzle Game</Text>
       </View>
-      <View style={styles.imgBox}></View>
+      <View style={homeStyles.imgBox}></View>
       <View>
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity style={styles.button}>
-            <Link href="/hangman" style={[styles.buttonText, styles.boldText]}>
+        <View style={homeStyles.buttonGroup}>
+          <TouchableOpacity style={homeStyles.button}>
+            <Link
+              href="/hangman"
+              style={[homeStyles.buttonText, homeStyles.boldText]}
+            >
               Start Game
             </Link>
           </TouchableOpacity>
         </View>
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>How To Play</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>High Scores</Text>
+        <View style={homeStyles.buttonGroup}>
+          {/* <TouchableOpacity style={homeStyles.button}>
+            <Text style={homeStyles.buttonText}>How To Play</Text>
+          </TouchableOpacity> */}
+          <BottomSheetDrop />
+
+          <TouchableOpacity style={homeStyles.button}>
+            <Text style={homeStyles.buttonText}>High Scores</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -34,66 +41,3 @@ const HomeScreen = (props: any) => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  heading: {
-    marginVertical: 4,
-    paddingVertical: 10,
-  },
-  title: {
-    fontSize: 25,
-    textTransform: 'uppercase',
-    fontWeight: 400,
-    letterSpacing: 3,
-    textAlign: 'center',
-    fontFamily: 'Poppins',
-  },
-  subtitle: {
-    fontSize: 14,
-    letterSpacing: 3,
-    textAlign: 'center',
-    fontFamily: 'Poppins',
-  },
-  imgBox: {
-    marginVertical: 10,
-    ...Platform.select({
-      ios: {
-        height: 500,
-      },
-      android: {
-        height: 400,
-      },
-      default: {
-        height: 500,
-      },
-    }),
-  },
-  button: {
-    borderWidth: 1,
-    borderRadius: 40,
-    padding: 10,
-    backgroundColor: '#fff',
-    flex: 1,
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: '#000',
-    fontFamily: 'Poppins',
-  },
-  boldText: {
-    fontWeight: 500,
-    fontSize: 16,
-  },
-  buttonGroup: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 10,
-    gap: 5,
-  },
-  word: {
-    textTransform: 'capitalize',
-    fontWeight: 'bold',
-    fontSize: 18,
-    paddingVertical: 6,
-  },
-});

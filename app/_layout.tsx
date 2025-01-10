@@ -12,9 +12,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import 'react-native-reanimated';
 import WordListProvider from '@/context/WordListProvider';
-
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import 'react-native-reanimated';
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -44,15 +44,17 @@ export default function RootLayout() {
           value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
         >
           <GestureHandlerRootView style={{ flex: 1 }}>
-            <Stack
-              initialRouteName="index"
-              screenOptions={{ headerShown: false }}
-            >
-              <Stack.Screen name="index" />
-              <Stack.Screen name="hangman" />
-              <Stack.Screen name="about" />
-              <Stack.Screen name="+not-found" />
-            </Stack>
+            <BottomSheetModalProvider>
+              <Stack
+                initialRouteName="index"
+                screenOptions={{ headerShown: false }}
+              >
+                <Stack.Screen name="index" />
+                <Stack.Screen name="hangman" />
+                <Stack.Screen name="about" />
+                <Stack.Screen name="+not-found" />
+              </Stack>
+            </BottomSheetModalProvider>
           </GestureHandlerRootView>
         </ThemeProvider>
       </WordListProvider>

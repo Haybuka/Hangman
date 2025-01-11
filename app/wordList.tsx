@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native';
 import Toast from 'react-native-toast-message';
 import HomeIcon from '@/components/HomeButton';
 
-const About = () => {
+const WordList = () => {
   const { wordList, handleRemoveWordFromList } = useContext(WordListContext);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -35,7 +35,7 @@ const About = () => {
   );
 };
 
-export default About;
+export default WordList;
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     borderColor: '#000',
     paddingVertical: 10,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.4,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -79,8 +79,12 @@ const styles = StyleSheet.create({
   },
   word: {
     textTransform: 'capitalize',
-    fontWeight: 'bold',
-    fontSize: 18,
+
     paddingVertical: 6,
+
+    fontSize: 14,
+    letterSpacing: 3,
+
+    fontFamily: 'Poppins',
   },
 });

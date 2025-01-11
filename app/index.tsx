@@ -27,14 +27,16 @@ const HomeScreen = () => {
         </View>
         <View style={homeStyles.buttonGroup}>
           <TouchableOpacity style={homeStyles.button}>
-            <Link href="/about" style={[homeStyles.buttonText]}>
+            <Link href="/wordList" style={[homeStyles.buttonText]}>
               Word List
             </Link>
           </TouchableOpacity>
           <BottomSheetDrop />
 
           <TouchableOpacity style={homeStyles.button}>
-            <Text style={homeStyles.buttonText}>High Scores</Text>
+            <Link href="/scores" style={[homeStyles.buttonText]}>
+              High Scores
+            </Link>
           </TouchableOpacity>
         </View>
       </View>

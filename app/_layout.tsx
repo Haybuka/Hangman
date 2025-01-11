@@ -51,7 +51,7 @@ export default function RootLayout() {
               >
                 <Stack.Screen name="index" />
                 <Stack.Screen name="hangman" />
-                <Stack.Screen name="about" />
+                <Stack.Screen name="wordList" />
                 <Stack.Screen name="+not-found" />
               </Stack>
             </BottomSheetModalProvider>

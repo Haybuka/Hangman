@@ -6,7 +6,6 @@ import ActiveButton from '@/components/ActiveButton';
 import DummyButton from '@/components/DummyButton';
 import LetterDisplay from '@/components/LetterDisplay';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { useGetDefinition } from '@/api';
 import GameOver from '@/components/GameOver';
 import * as Haptics from 'expo-haptics';

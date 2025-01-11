@@ -81,7 +81,6 @@ export const hangmanStyles = StyleSheet.create({
   },
   hintParent: {
     marginVertical: 15,
-    backgroundColor: 'yellow',
   },
   hintContainer: {
     flexDirection: 'row',

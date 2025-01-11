@@ -36,6 +36,13 @@ const WordListProvider = ({ children }: WordListProp) => {
         Toast.show({
           type: 'success',
           text1: `Word Exists`,
+          text1Style: {
+            fontSize: 20,
+            textAlign: 'center',
+            color: '#333',
+            textTransform: 'uppercase',
+            fontFamily: 'Poppins',
+          },
         });
       } else {
         const toUpperCase =

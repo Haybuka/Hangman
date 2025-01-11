@@ -25,21 +25,7 @@ function Screen({
         backgroundColor: bg ? bg : '#FFFFFF',
       }}
     >
-      <View style={styles.container}>
-        {/* {
-          canGoBack && (
-            <TouchableOpacity className="flex-row items-center py-3" onPress={handleBackPress}>
-
-              <View >
-                <ArrowBack />
-              </View>
-              <Text className="mx-3 font-semibold  flex-1 py-2">Back</Text>
-              <Ionicons name="search" size={25} color="green" />
-            </TouchableOpacity>
-          )
-        } */}
-        {children}
-      </View>
+      <View style={styles.container}>{children}</View>
     </SafeAreaView>
   );
 }
@@ -48,8 +34,6 @@ export default Screen;
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    paddingHorizontal: 20,
-    paddingTop: 16,
+    paddingHorizontal: 10,
   },
 });

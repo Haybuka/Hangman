@@ -9,8 +9,7 @@ export const hangmanStyles = StyleSheet.create({
     marginTop: 10,
   },
   container: {
-    padding: 10,
-    justifyContent: 'center',
+    paddingHorizontal: 10,
     alignItems: 'center',
     flex: 1,
   },
@@ -35,9 +34,8 @@ export const hangmanStyles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   hangman: {
-    height: 250,
-    flex: 1,
-    backgroundColor: 'yellow',
+    height: 200,
+    backgroundColor: 'transparent',
   },
   winner: {
     color: 'green',
@@ -74,13 +72,16 @@ export const hangmanStyles = StyleSheet.create({
     flexWrap: 'wrap',
     marginVertical: 20,
     justifyContent: 'center',
-    backgroundColor: 'yellow',
   },
 
   btn: {
     elevation: 4,
     backgroundColor: '#fff',
     padding: 10,
+  },
+  hintParent: {
+    marginVertical: 15,
+    backgroundColor: 'yellow',
   },
   hintContainer: {
     flexDirection: 'row',

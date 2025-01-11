@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import alphabets from '@/utils/alphabets';
 import hangmanWords from '@/utils/hangmanWords';
@@ -16,7 +16,7 @@ import Toast from 'react-native-toast-message';
 import HomeIcon from '@/components/HomeButton';
 import { hangmanStyles } from '@/styles/hangman';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
-import { styles } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetScrollable/BottomSheetFlashList';
+import Constants from 'expo-constants';
 
 const Home = () => {
   const guessedCount = 6;
@@ -98,95 +98,106 @@ const Home = () => {
   }, [word]);
 
   return (
-    <View style={hangmanStyles.container}>
-      <View style={hangmanStyles.headingContainer}>
-        <View style={hangmanStyles.iconContainer}>
-          {wrongGuess !== guessedCount && (
-            <>
-              <Feather name="heart" color={'#AE0A25'} size={30} />
-              <Text style={hangmanStyles.liveCount}>{wrongGuess}</Text>
-            </>
+    <SafeAreaView
+      style={{
+        paddingTop: Constants.statusBarHeight,
+        flex: 1,
+      }}
+    >
+      <View style={hangmanStyles.container}>
+        <View style={hangmanStyles.headingContainer}>
+          <View style={hangmanStyles.iconContainer}>
+            {wrongGuess !== guessedCount && (
+              <>
+                <Feather name="heart" color={'#AE0A25'} size={30} />
+                <Text style={hangmanStyles.liveCount}>{wrongGuess}</Text>
+              </>
+            )}
+          </View>
+          <Text style={hangmanStyles.heading}> {word}</Text>
+          <FontAwesome5 name="lightbulb" size={25} color="#FFBA08" />
+        </View>
+        <View
+          style={[
+            hangmanStyles.hangman,
+            { height: wrongGuess === guessedCount ? 100 : 200 },
+          ]}
+        ></View>
+        <View style={[hangmanStyles.subheading, hangmanStyles.textContainer]}>
+          {wrongGuess === guessedCount && <GameOver word={word} />}
+
+          {handleWordCount(guessedWord) === handleWordCount(word) && (
+            <Feather name="check" color={'#52B788'} size={30} />
           )}
         </View>
-        <Text style={hangmanStyles.heading}> {word}</Text>
-        <FontAwesome5 name="lightbulb" size={25} color="#FFBA08" />
-      </View>
-      <View style={hangmanStyles.hangman}>
-        <Text>sign</Text>
-      </View>
-      <View style={[hangmanStyles.subheading, hangmanStyles.textContainer]}>
-        {wrongGuess === guessedCount && <GameOver word={word} />}
-
-        {handleWordCount(guessedWord) === handleWordCount(word) && (
-          <Feather name="check" color={'#52B788'} size={30} />
-        )}
-      </View>
-      <LetterDisplay word={word} guessedWord={guessedWord} />
-      {!isOver && (
-        <View>
-          {isFetched ? (
+        <LetterDisplay word={word} guessedWord={guessedWord} />
+        <View style={hangmanStyles.hintParent}>
+          {!isOver && (
             <View>
-              <View style={hangmanStyles.hintContainer}>
-                <Text
-                  style={[hangmanStyles.subheading, hangmanStyles.hintText]}
-                >
-                  Hints :
-                </Text>
-              </View>
-
-              <Text style={hangmanStyles.subheading}>
-                {wordDefinition ? wordDefinition : 'OOps, no hint found'}
-              </Text>
-            </View>
-          ) : (
-            <ActivityIndicator size="large" color="#29427A" />
-          )}
-        </View>
-      )}
-      {handleWordCount(guessedWord) !== handleWordCount(word) && (
-        <View>
-          {word && (
-            <View style={hangmanStyles.alphabetContainer}>
-              {alphabets.map(({ letter }, id) =>
-                !totalLetters.includes(letter) &&
-                wrongGuess !== guessedCount ? (
-                  <ActiveButton
-                    key={id}
-                    handleLetterGuessing={handleLetterGuessing}
-                    wrongWord={wrongWord}
-                    guessedWord={guessedWord}
-                    letter={letter}
-                  />
-                ) : (
-                  <DummyButton
-                    key={id}
-                    wrongWord={wrongWord}
-                    guessedWord={guessedWord}
-                    letter={letter}
-                  />
-                )
+              {isFetched ? (
+                <View>
+                  <View style={hangmanStyles.hintContainer}>
+                    <Text
+                      style={[hangmanStyles.subheading, hangmanStyles.hintText]}
+                    >
+                      Hints :
+                    </Text>
+                    <Text style={hangmanStyles.subheading}>
+                      {wordDefinition ? wordDefinition : 'OOps, no hint found'}
+                    </Text>
+                  </View>
+                </View>
+              ) : (
+                <ActivityIndicator size="large" color="#29427A" />
               )}
             </View>
           )}
         </View>
-      )}
-      {isOver && (
-        <Button
-          text="Add to Word List"
-          handlePress={() =>
-            handleAddToWordlist(word, wordDefinition ? wordDefinition : '')
-          }
-        />
-      )}
-      <View style={hangmanStyles.btnGroup}>
-        <HomeIcon />
-        {!isGenerating ? (
-          <Button text="New Word" handlePress={generateWord} />
-        ) : (
-          <ActivityIndicator size="large" color="#29427A" />
+        {handleWordCount(guessedWord) !== handleWordCount(word) && (
+          <View>
+            {word && (
+              <View style={hangmanStyles.alphabetContainer}>
+                {alphabets.map(({ letter }, id) =>
+                  !totalLetters.includes(letter) &&
+                  wrongGuess !== guessedCount ? (
+                    <ActiveButton
+                      key={id}
+                      handleLetterGuessing={handleLetterGuessing}
+                      wrongWord={wrongWord}
+                      guessedWord={guessedWord}
+                      letter={letter}
+                    />
+                  ) : (
+                    <DummyButton
+                      key={id}
+                      wrongWord={wrongWord}
+                      guessedWord={guessedWord}
+                      letter={letter}
+                    />
+                  )
+                )}
+              </View>
+            )}
+          </View>
         )}
+        {isOver && (
+          <Button
+            text="Add to Word List"
+            handlePress={() =>
+              handleAddToWordlist(word, wordDefinition ? wordDefinition : '')
+            }
+          />
+        )}
+        <View style={hangmanStyles.btnGroup}>
+          <HomeIcon />
+          {!isGenerating ? (
+            <Button text="New Word" handlePress={generateWord} />
+          ) : (
+            <ActivityIndicator size="large" color="#29427A" />
+          )}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

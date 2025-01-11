@@ -31,10 +31,6 @@ const gamerules = [
     id: 8,
     rule: 'The player wins if they guess the word before running out of chances. Otherwise, they lose.',
   },
-  {
-    id: 9,
-    rule: '',
-  },
 ];
 
 export default gamerules;

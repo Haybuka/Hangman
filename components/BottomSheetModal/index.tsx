@@ -37,6 +37,7 @@ const BottomSheetDrop = () => {
   }, []);
   const Item = ({ rule }: ItemProps) => (
     <View style={styles.itemContainer}>
+      <View style={styles.listStyle}></View>
       <Text style={styles.itemText}>{rule}</Text>
     </View>
   );
@@ -73,6 +74,7 @@ const BottomSheetDrop = () => {
 const styles = StyleSheet.create({
   contentContainer: {
     padding: 10,
+    paddingHorizontal: 4,
   },
 
   heading: {
@@ -94,10 +96,18 @@ const styles = StyleSheet.create({
     color: '#000',
     fontFamily: 'Poppins',
   },
-
+  listStyle: {
+    width: 10,
+    height: 10,
+    borderWidth: 1,
+    borderRadius: 40,
+    marginTop: 4,
+  },
   itemContainer: {
     padding: 6,
     marginVertical: 6,
+    flexDirection: 'row',
+    gap: 6,
   },
   itemText: {
     fontSize: 16,

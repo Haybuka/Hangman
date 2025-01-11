@@ -111,6 +111,9 @@ const Home = () => {
         <Text style={hangmanStyles.heading}> {word}</Text>
         <FontAwesome5 name="lightbulb" size={25} color="#FFBA08" />
       </View>
+      <View style={hangmanStyles.hangman}>
+        <Text>sign</Text>
+      </View>
       <View style={[hangmanStyles.subheading, hangmanStyles.textContainer]}>
         {wrongGuess === guessedCount && <GameOver word={word} />}
 

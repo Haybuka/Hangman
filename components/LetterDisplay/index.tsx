@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     gap: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   words: {
     borderBottomWidth: 1,

@@ -1,13 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import HomeIcon from '../HomeButton';
-
-const HeaderLayout = ({ title }) => {
+type HeaderLayoutProp = {
+  title: string;
+};
+const HeaderLayout = ({ title }: HeaderLayoutProp) => {
   return (
     <View style={styles.headerContainer}>
       <HomeIcon />
       <View style={styles.header}>
-        <Text style={styles.headerText}>Word List</Text>
+        <Text style={styles.headerText}>{title}</Text>
       </View>
     </View>
   );

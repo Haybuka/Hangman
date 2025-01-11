@@ -5,6 +5,7 @@ import Screen from '@/components/RootScreen';
 import { TouchableOpacity } from 'react-native';
 import Toast from 'react-native-toast-message';
 import HomeIcon from '@/components/HomeButton';
+import HeaderLayout from '@/components/Header';
 
 const WordList = () => {
   const { wordList, handleRemoveWordFromList } = useContext(WordListContext);
@@ -13,12 +14,7 @@ const WordList = () => {
   console.log(wordList);
   return (
     <Screen>
-      <View style={styles.headerContainer}>
-        <HomeIcon />
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Word List</Text>
-        </View>
-      </View>
+      <HeaderLayout title="Word List" />
       <FlatList
         data={wordList}
         style={styles.flatListStyle}

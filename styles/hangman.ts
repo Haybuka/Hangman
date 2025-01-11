@@ -14,6 +14,13 @@ export const hangmanStyles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
+  headingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // backgroundColor: 'red',
+    width: '100%',
+  },
   heading: {
     fontSize: 20,
     textAlign: 'center',
@@ -22,11 +29,11 @@ export const hangmanStyles = StyleSheet.create({
     fontFamily: 'Poppins',
   },
   subheading: {
-    marginVertical: 10,
     textAlign: 'center',
     fontSize: 14,
     color: '#333',
     fontFamily: 'SpaceMono',
+    backgroundColor: 'transparent',
   },
   winner: {
     color: 'green',
@@ -36,6 +43,11 @@ export const hangmanStyles = StyleSheet.create({
   },
   liveCount: {
     fontFamily: 'Poppins',
+    position: 'absolute',
+    width: '100%',
+    color: '#AE0A25',
+    textAlign: 'center',
+    marginTop: 5,
   },
   textContainer: { alignItems: 'center', gap: 10 },
   wordContainer: {
@@ -50,6 +62,7 @@ export const hangmanStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     gap: 10,
+    position: 'relative',
   },
 
   alphabetContainer: {
@@ -63,5 +76,14 @@ export const hangmanStyles = StyleSheet.create({
     elevation: 4,
     backgroundColor: '#fff',
     padding: 10,
+  },
+  hintContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 4,
+    justifyContent: 'center',
+  },
+  hintText: {
+    textAlign: 'center',
   },
 });

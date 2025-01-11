@@ -15,6 +15,8 @@ import { WordListContext } from '@/context/WordListProvider';
 import Toast from 'react-native-toast-message';
 import HomeIcon from '@/components/HomeButton';
 import { hangmanStyles } from '@/styles/hangman';
+import { Feather, FontAwesome5 } from '@expo/vector-icons';
+import { styles } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetScrollable/BottomSheetFlashList';
 
 const Home = () => {
   const guessedCount = 6;
@@ -97,32 +99,42 @@ const Home = () => {
 
   return (
     <View style={hangmanStyles.container}>
-      <Text style={hangmanStyles.heading}>Hang Man {word}</Text>
+      <View style={hangmanStyles.headingContainer}>
+        <View style={hangmanStyles.iconContainer}>
+          {wrongGuess !== guessedCount && (
+            <>
+              <Feather name="heart" color={'#AE0A25'} size={30} />
+              <Text style={hangmanStyles.liveCount}>{wrongGuess}</Text>
+            </>
+          )}
+        </View>
+        <Text style={hangmanStyles.heading}> {word}</Text>
+        <FontAwesome5 name="lightbulb" size={25} color="#FFBA08" />
+      </View>
       <View style={[hangmanStyles.subheading, hangmanStyles.textContainer]}>
         {wrongGuess === guessedCount && <GameOver word={word} />}
 
         {handleWordCount(guessedWord) === handleWordCount(word) && (
-          <Text style={[hangmanStyles.winner]}> Winner</Text>
+          <Feather name="check" color={'#52B788'} size={30} />
         )}
-
-        <View style={hangmanStyles.iconContainer}>
-          {wrongGuess !== guessedCount && (
-            <>
-              <Icon name={'heart'} size={20} color="red" />
-              <Text style={hangmanStyles.liveCount}>
-                {wrongGuess} / {guessedCount}
-              </Text>
-            </>
-          )}
-        </View>
       </View>
       <LetterDisplay word={word} guessedWord={guessedWord} />
       {!isOver && (
         <View>
           {isFetched ? (
-            <Text style={hangmanStyles.subheading}>
-              Hints : {wordDefinition ? wordDefinition : 'OOps, no hint found'}
-            </Text>
+            <View>
+              <View style={hangmanStyles.hintContainer}>
+                <Text
+                  style={[hangmanStyles.subheading, hangmanStyles.hintText]}
+                >
+                  Hints :
+                </Text>
+              </View>
+
+              <Text style={hangmanStyles.subheading}>
+                {wordDefinition ? wordDefinition : 'OOps, no hint found'}
+              </Text>
+            </View>
           ) : (
             <ActivityIndicator size="large" color="#29427A" />
           )}

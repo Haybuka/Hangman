@@ -6,6 +6,7 @@ import {
   Platform,
 } from 'react-native';
 import React from 'react';
+import { colors, font } from '@/styles/globalStyles';
 
 type ButtonProp = {
   handlePress: () => void;
@@ -23,7 +24,7 @@ export default Button;
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     padding: 10,
     marginVertical: 4,
     width: 150,
@@ -47,6 +48,6 @@ const styles = StyleSheet.create({
     }),
   },
   text: {
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
 });

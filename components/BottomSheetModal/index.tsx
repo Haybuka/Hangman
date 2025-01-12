@@ -14,6 +14,7 @@ import BottomSheet, {
 } from '@gorhom/bottom-sheet';
 import gamerules from '@/utils/gamerules';
 import { Feather } from '@expo/vector-icons';
+import { colors, font } from '@/styles/globalStyles';
 
 type ItemProps = { rule: string; id: string };
 
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 16,
     textTransform: 'uppercase',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
     letterSpacing: 2,
     textAlign: 'center',
   },
@@ -88,13 +89,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 40,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     flex: 1,
   },
   buttonText: {
     textAlign: 'center',
-    color: '#000',
-    fontFamily: 'Poppins',
+    color: colors.ash,
+    fontFamily: font.default,
     textTransform: 'uppercase',
   },
   listStyle: {
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 12,
     textTransform: 'uppercase',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
     letterSpacing: 2,
   },
 });

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { font } from '@/styles/globalStyles';
 
 type LetterDisplayProp = {
   word: string;
@@ -44,6 +45,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     textTransform: 'uppercase',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
 });

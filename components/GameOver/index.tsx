@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
+import { colors, font } from '@/styles/globalStyles';
 
 type GameOverProp = {
   word: string;
@@ -16,17 +17,16 @@ export default function GameOver({ word }: GameOverProp) {
 
 const styles = StyleSheet.create({
   error: {
-    color: 'red',
-    // fontSize: 22,
+    color: colors.red,
     textAlign: 'center',
     fontWeight: '600',
-    fontFamily: 'SpaceMono',
+    fontFamily: font.fallback,
   },
   correctLetter: {
     fontSize: 22,
     textAlign: 'center',
     textTransform: 'uppercase',
     fontWeight: '500',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
 });

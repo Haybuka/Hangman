@@ -1,9 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import Constants from 'expo-constants';
-// import ArrowBack from '../assets/icon/ArrowBack';
-
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { colors } from '@/styles/globalStyles';
 
 type ScreenProp = {
   children: React.ReactNode;
@@ -22,7 +20,7 @@ function Screen({
       style={{
         paddingTop: Constants.statusBarHeight,
         flex: 1,
-        backgroundColor: bg ? bg : '#FFFFFF',
+        backgroundColor: bg ? bg : colors.white,
       }}
     >
       <View style={styles.container}>{children}</View>

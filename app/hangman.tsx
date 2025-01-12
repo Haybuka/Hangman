@@ -16,6 +16,7 @@ import HomeIcon from '@/components/HomeButton';
 import { hangmanStyles } from '@/styles/hangman';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
 import Constants from 'expo-constants';
+import { colors } from '@/styles/globalStyles';
 
 const Home = () => {
   const guessedCount = 6;
@@ -114,7 +115,7 @@ const Home = () => {
             )}
           </View>
           <Text style={hangmanStyles.heading}> {word}</Text>
-          <FontAwesome5 name="lightbulb" size={25} color="#FFBA08" />
+          <FontAwesome5 name="lightbulb" size={25} color={colors.orange} />
         </View>
         <View
           style={[
@@ -126,7 +127,7 @@ const Home = () => {
           {wrongGuess === guessedCount && <GameOver word={word} />}
 
           {handleWordCount(guessedWord) === handleWordCount(word) && (
-            <Feather name="check" color={'#52B788'} size={30} />
+            <Feather name="check" color={colors.green} size={30} />
           )}
         </View>
         <LetterDisplay word={word} guessedWord={guessedWord} />

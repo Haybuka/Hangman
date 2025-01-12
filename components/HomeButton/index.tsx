@@ -3,6 +3,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
+import { colors } from '@/styles/globalStyles';
 
 const HomeIcon = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     padding: 10,
 
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
 
     ...Platform.select({
       ios: {

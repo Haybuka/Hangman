@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
+import { colors, font } from './globalStyles';
 
 export const homeStyles = StyleSheet.create({
   heading: {
@@ -11,13 +12,13 @@ export const homeStyles = StyleSheet.create({
     fontWeight: 400,
     letterSpacing: 3,
     textAlign: 'center',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
   subtitle: {
     fontSize: 14,
     letterSpacing: 3,
     textAlign: 'center',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
     textTransform: 'uppercase',
   },
   imgBox: {
@@ -38,13 +39,13 @@ export const homeStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 40,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     flex: 1,
   },
   buttonText: {
     textAlign: 'center',
-    color: '#000',
-    fontFamily: 'Poppins',
+    color: colors.ash,
+    fontFamily: font.default,
     textTransform: 'uppercase',
   },
   boldText: {

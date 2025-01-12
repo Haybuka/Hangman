@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { colors, font } from '@/styles/globalStyles';
 
 type DummyButtonProp = {
   letter: string;
@@ -31,7 +32,7 @@ export default DummyButton;
 
 const styles = StyleSheet.create({
   alphabet: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     elevation: 4,
     padding: 4,
     width: 45,
@@ -42,18 +43,18 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   guessedLetter: {
-    backgroundColor: '#333',
+    backgroundColor: colors.ash,
   },
   correctLetter: {
-    color: 'green',
+    color: colors.green,
   },
   wrongLetter: {
-    color: 'red',
+    color: colors.red,
   },
   letter: {
     fontSize: 20,
     fontWeight: 600,
     textTransform: 'uppercase',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
 });

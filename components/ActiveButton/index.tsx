@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { colors, font } from '@/styles/globalStyles';
 
 type ActiveButtonProp = {
   letter: string;
@@ -41,7 +42,7 @@ export default ActiveButton;
 
 const styles = StyleSheet.create({
   alphabet: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     elevation: 3,
     padding: 4,
     width: 45,
@@ -52,18 +53,18 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   guessedLetter: {
-    backgroundColor: '#333',
+    backgroundColor: colors.ash,
   },
   correctLetter: {
-    color: 'green',
+    color: colors.green,
   },
   wrongLetter: {
-    color: 'red',
+    color: colors.red,
   },
   letter: {
     fontSize: 20,
     fontWeight: 500,
     textTransform: 'uppercase',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
 });

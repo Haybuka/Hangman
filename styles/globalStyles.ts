@@ -3,8 +3,8 @@ export const colors = {
   ash: '#333',
   white: '#fff',
   red: '#AE0A25',
-  green: '#',
-  orange: '#',
+  green: '#52B788',
+  orange: '#FFBA08',
   transparent: 'transparent',
 };
 

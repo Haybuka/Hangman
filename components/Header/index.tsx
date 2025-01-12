@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import HomeIcon from '../HomeButton';
+import { colors, font } from '@/styles/globalStyles';
 type HeaderLayoutProp = {
   title: string;
 };
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontWeight: 400,
     letterSpacing: 3,
-    color: '#333',
-    fontFamily: 'Poppins',
+    color: colors.ash,
+    fontFamily: font.default,
   },
 });

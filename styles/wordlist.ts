@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors, font } from './globalStyles';
 
 const wordlistStyles = StyleSheet.create({
   flatListStyle: {
@@ -6,7 +7,7 @@ const wordlistStyles = StyleSheet.create({
   },
   wordContainer: {
     marginVertical: 4,
-    borderColor: '#000',
+    borderColor: colors.black,
     paddingVertical: 10,
     borderBottomWidth: 0.4,
     display: 'flex',
@@ -22,14 +23,14 @@ const wordlistStyles = StyleSheet.create({
   },
   viewText: {
     textAlign: 'center',
-    color: '#000',
+    color: colors.ash,
   },
   word: {
     textTransform: 'capitalize',
     paddingVertical: 6,
     fontSize: 14,
     letterSpacing: 3,
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
 });
 

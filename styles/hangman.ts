@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors, font } from './globalStyles';
 
 export const hangmanStyles = StyleSheet.create({
   btnGroup: {
@@ -22,32 +23,32 @@ export const hangmanStyles = StyleSheet.create({
   heading: {
     fontSize: 20,
     textAlign: 'center',
-    color: '#333',
+    color: colors.ash,
     textTransform: 'uppercase',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
   subheading: {
     textAlign: 'center',
     fontSize: 14,
-    color: '#333',
+    color: colors.ash,
     fontFamily: 'SpaceMono',
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
   },
   hangman: {
     height: 200,
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
   },
   winner: {
     color: 'green',
     fontSize: 22,
     fontWeight: '600',
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
   },
   liveCount: {
-    fontFamily: 'Poppins',
+    fontFamily: font.default,
+    color: colors.red,
     position: 'absolute',
     width: '100%',
-    color: '#AE0A25',
     textAlign: 'center',
     marginTop: 5,
   },
@@ -76,7 +77,7 @@ export const hangmanStyles = StyleSheet.create({
 
   btn: {
     elevation: 4,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     padding: 10,
   },
   hintParent: {

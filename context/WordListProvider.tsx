@@ -37,11 +37,11 @@ const WordListProvider = ({ children }: WordListProp) => {
           type: 'success',
           text1: `Word Exists`,
           text1Style: {
-            fontSize: 20,
-            textAlign: 'center',
+            fontSize: 14,
             color: '#333',
             textTransform: 'uppercase',
             fontFamily: 'Poppins',
+            fontWeight: 400,
           },
         });
       } else {
@@ -55,7 +55,14 @@ const WordListProvider = ({ children }: WordListProp) => {
         setWordList(newList);
         Toast.show({
           type: 'success',
-          text1: `${toUpperCase} added.`,
+          text1: `${word?.word} added.`,
+          text1Style: {
+            fontSize: 14,
+            color: '#333',
+            textTransform: 'uppercase',
+            fontFamily: 'Poppins',
+            fontWeight: 400,
+          },
         });
       }
     } catch (error) {}

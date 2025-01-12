@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#000',
     fontFamily: 'Poppins',
+    textTransform: 'uppercase',
   },
   listStyle: {
     width: 10,
@@ -110,7 +111,10 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   itemText: {
-    fontSize: 16,
+    fontSize: 12,
+    textTransform: 'uppercase',
+    fontFamily: 'Poppins',
+    letterSpacing: 2,
   },
 });
 

@@ -18,6 +18,7 @@ export const homeStyles = StyleSheet.create({
     letterSpacing: 3,
     textAlign: 'center',
     fontFamily: 'Poppins',
+    textTransform: 'uppercase',
   },
   imgBox: {
     marginVertical: 10,
@@ -44,6 +45,7 @@ export const homeStyles = StyleSheet.create({
     textAlign: 'center',
     color: '#000',
     fontFamily: 'Poppins',
+    textTransform: 'uppercase',
   },
   boldText: {
     fontWeight: 500,

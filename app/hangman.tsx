@@ -137,11 +137,6 @@ const Home = () => {
               {isFetched ? (
                 <View>
                   <View style={hangmanStyles.hintContainer}>
-                    <Text
-                      style={[hangmanStyles.subheading, hangmanStyles.hintText]}
-                    >
-                      Hints :
-                    </Text>
                     <Text style={hangmanStyles.subheading}>
                       {wordDefinition ? wordDefinition : 'OOps, no hint found'}
                     </Text>
@@ -153,41 +148,43 @@ const Home = () => {
             </View>
           )}
         </View>
-        {handleWordCount(guessedWord) !== handleWordCount(word) && (
-          <View>
-            {word && (
-              <View style={hangmanStyles.alphabetContainer}>
-                {alphabets.map(({ letter }, id) =>
-                  !totalLetters.includes(letter) &&
-                  wrongGuess !== guessedCount ? (
-                    <ActiveButton
-                      key={id}
-                      handleLetterGuessing={handleLetterGuessing}
-                      wrongWord={wrongWord}
-                      guessedWord={guessedWord}
-                      letter={letter}
-                    />
-                  ) : (
-                    <DummyButton
-                      key={id}
-                      wrongWord={wrongWord}
-                      guessedWord={guessedWord}
-                      letter={letter}
-                    />
-                  )
-                )}
-              </View>
-            )}
-          </View>
-        )}
-        {isOver && (
-          <Button
-            text="Add to Word List"
-            handlePress={() =>
-              handleAddToWordlist(word, wordDefinition ? wordDefinition : '')
-            }
-          />
-        )}
+        <View>
+          {handleWordCount(guessedWord) !== handleWordCount(word) && (
+            <View>
+              {word && (
+                <View style={hangmanStyles.alphabetContainer}>
+                  {alphabets.map(({ letter }, id) =>
+                    !totalLetters.includes(letter) &&
+                    wrongGuess !== guessedCount ? (
+                      <ActiveButton
+                        key={id}
+                        handleLetterGuessing={handleLetterGuessing}
+                        wrongWord={wrongWord}
+                        guessedWord={guessedWord}
+                        letter={letter}
+                      />
+                    ) : (
+                      <DummyButton
+                        key={id}
+                        wrongWord={wrongWord}
+                        guessedWord={guessedWord}
+                        letter={letter}
+                      />
+                    )
+                  )}
+                </View>
+              )}
+            </View>
+          )}
+          {isOver && (
+            <Button
+              text="Add to Word List"
+              handlePress={() =>
+                handleAddToWordlist(word, wordDefinition ? wordDefinition : '')
+              }
+            />
+          )}
+        </View>
         <View style={hangmanStyles.btnGroup}>
           <HomeIcon />
           {!isGenerating ? (

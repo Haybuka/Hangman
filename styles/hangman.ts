@@ -10,9 +10,10 @@ export const hangmanStyles = StyleSheet.create({
     marginTop: 10,
   },
   container: {
-    paddingHorizontal: 10,
+    padding: 10,
     alignItems: 'center',
     flex: 1,
+    paddingVertical: 20,
   },
   headingContainer: {
     flexDirection: 'row',
@@ -82,6 +83,7 @@ export const hangmanStyles = StyleSheet.create({
   },
   hintParent: {
     marginVertical: 15,
+    paddingHorizontal: 2,
   },
   hintContainer: {
     flexDirection: 'row',

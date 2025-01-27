@@ -171,24 +171,12 @@ const Home = () => {
           )}
         </View>
         <LetterDisplay word={word} guessedWord={guessedWord} />
-        <TouchableOpacity style={hangmanStyles.infoIcon}>
-          <FontAwesome5 name="info" size={15} color={colors.ash} />
-        </TouchableOpacity>
+
         <View style={hangmanStyles.hintParent}>
           {!isOver && (
             <View>
               {isFetched ? (
-                <View>
-                  <View style={hangmanStyles.hintContainer}>
-                    {wordDefinition ? (
-                      <HintDefinition hint={wordDefinition} />
-                    ) : (
-                      <Text style={hangmanStyles.subheading}>
-                        'OOps, no definition found
-                      </Text>
-                    )}
-                  </View>
-                </View>
+                <HintDefinition hint={wordDefinition} />
               ) : (
                 <ActivityIndicator size="large" color="#29427A" />
               )}

@@ -13,7 +13,7 @@ export const hangmanStyles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     flex: 1,
-    paddingVertical: 20,
+    paddingTop: 20,
   },
   headingContainer: {
     flexDirection: 'row',

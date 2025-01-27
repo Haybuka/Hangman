@@ -138,7 +138,7 @@ const Home = () => {
   return (
     <SafeAreaView
       style={{
-        paddingTop: Constants.statusBarHeight,
+        // paddingTop: Constants.statusBarHeight,
         flex: 1,
       }}
     >
@@ -177,16 +177,7 @@ const Home = () => {
           isGameOver={isOver}
           isDefinitionFetched={isFetched}
         />
-        {/* <View style={hangmanStyles.hintParent}>
-          {!isOver && (
-            <View>
-              {isFetched ? (
-              ) : (
-                <ActivityIndicator size="large" color="#29427A" />
-              )}
-            </View>
-          )}
-        </View> */}
+
         <View>
           {handleWordCount(guessedWord) !== handleWordCount(word) && (
             <View>

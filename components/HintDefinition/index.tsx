@@ -33,7 +33,7 @@ const HintDefinition = ({
                   style={styles.infoIcon}
                   onPress={handleHintModal}
                 >
-                  <FontAwesome5 name="info" size={15} color={colors.ash} />
+                  <FontAwesome5 name="info" size={13} color={colors.ash} />
                 </TouchableOpacity>
               ) : (
                 <Text style={styles.subheading}>
@@ -55,8 +55,8 @@ export default HintDefinition;
 const styles = StyleSheet.create({
   infoIcon: {
     backgroundColor: colors.gray,
-    height: 30,
-    width: 30,
+    height: 25,
+    width: 25,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,

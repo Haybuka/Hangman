@@ -172,17 +172,21 @@ const Home = () => {
         </View>
         <LetterDisplay word={word} guessedWord={guessedWord} />
 
-        <View style={hangmanStyles.hintParent}>
+        <HintDefinition
+          hint={wordDefinition}
+          isGameOver={isOver}
+          isDefinitionFetched={isFetched}
+        />
+        {/* <View style={hangmanStyles.hintParent}>
           {!isOver && (
             <View>
               {isFetched ? (
-                <HintDefinition hint={wordDefinition} />
               ) : (
                 <ActivityIndicator size="large" color="#29427A" />
               )}
             </View>
           )}
-        </View>
+        </View> */}
         <View>
           {handleWordCount(guessedWord) !== handleWordCount(word) && (
             <View>

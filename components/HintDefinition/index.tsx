@@ -1,23 +1,50 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import { colors } from '@/styles/globalStyles';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 type HintDefinitionProp = {
   hint?: string;
+  isGameOver: boolean;
+  isDefinitionFetched: boolean;
 };
-const HintDefinition = ({ hint }: HintDefinitionProp) => {
+const HintDefinition = ({
+  hint,
+  isDefinitionFetched,
+  isGameOver,
+}: HintDefinitionProp) => {
   const handleHintModal = () => {
     console.log(hint, 'hint');
   };
   return (
-    <View style={styles.hintContainer}>
-      {hint ? (
-        <TouchableOpacity style={styles.infoIcon} onPress={handleHintModal}>
-          <FontAwesome5 name="info" size={15} color={colors.ash} />
-        </TouchableOpacity>
-      ) : (
-        <Text style={styles.subheading}>'OOps, no definition found</Text>
+    <View style={styles.hintParent}>
+      {!isGameOver && (
+        <View>
+          {isDefinitionFetched ? (
+            <View style={styles.hintContainer}>
+              {hint ? (
+                <TouchableOpacity
+                  style={styles.infoIcon}
+                  onPress={handleHintModal}
+                >
+                  <FontAwesome5 name="info" size={15} color={colors.ash} />
+                </TouchableOpacity>
+              ) : (
+                <Text style={styles.subheading}>
+                  'OOps, no definition found
+                </Text>
+              )}
+            </View>
+          ) : (
+            <ActivityIndicator size="large" color="#29427A" />
+          )}
+        </View>
       )}
     </View>
   );
@@ -39,6 +66,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 4,
     justifyContent: 'center',
+  },
+  hintText: {
+    textAlign: 'center',
+  },
+  hintParent: {
+    marginVertical: 15,
+    paddingHorizontal: 2,
   },
   subheading: {
     textAlign: 'center',

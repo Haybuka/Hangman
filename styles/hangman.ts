@@ -81,25 +81,4 @@ export const hangmanStyles = StyleSheet.create({
     backgroundColor: colors.white,
     padding: 10,
   },
-  hintParent: {
-    marginVertical: 15,
-    paddingHorizontal: 2,
-  },
-  hintContainer: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 4,
-    justifyContent: 'center',
-  },
-  hintText: {
-    textAlign: 'center',
-  },
-  infoIcon: {
-    backgroundColor: colors.gray,
-    height: 30,
-    width: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-  },
 });

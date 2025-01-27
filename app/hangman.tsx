@@ -35,8 +35,10 @@ const Home = () => {
   const [wrongGuess, setWrongGuess] = useState(0);
   const [isGenerating, setIsGenerating] = useState(false);
 
+  // Api to get the definition of each word
   const { data: wordDefinition, isFetched } = useGetDefinition(word);
 
+  // updates the letter guessed, and handles right/wrong
   const handleLetterGuessing = (letter: string) => {
     if (word.includes(letter)) {
       setGuessedWord(guessedWord + letter);
@@ -48,6 +50,7 @@ const Home = () => {
     setTotalLetters(totalLetters + letter);
   };
 
+  // Handles the update of the guessing tiimes
   const handleGuessCount = (wordUsed: string) => {
     let count = '';
     for (let i = 0; i < wordUsed.length; i++) {
@@ -57,6 +60,7 @@ const Home = () => {
     }
   };
 
+  // Generates the random word from alphabet list
   const generateWord = useCallback(() => {
     setIsGenerating(true);
     const randomNumber = Math.round(Math.random() * hangmanWords.length) + 1;
@@ -70,9 +74,11 @@ const Home = () => {
     }, 2000);
   }, []);
 
+  // Generate a word on screen load.
   useEffect(() => {
     generateWord();
   }, []);
+
   const handleWordCount = (wordUsed: string) => {
     let wordCounter = '';
     for (let index = 0; index < wordUsed.length; index++) {
@@ -85,6 +91,7 @@ const Home = () => {
     return wordCounter.length;
   };
 
+  // adds to the word list context that populates the other screen
   const handleAddToWordlist = (word: string, meaning: string) => {
     const dictionaryWord = { word, meaning };
     if (word !== '') {
@@ -97,12 +104,14 @@ const Home = () => {
     }
   };
 
+  // game over logic
   let isOver = handleWordCount(guessedWord) === handleWordCount(word);
 
   useEffect(() => {
     handleGuessCount(word);
   }, [word]);
 
+  // Hint update.
   const handleHintSelect = () => {
     let wordLeft = '';
 
@@ -168,7 +177,9 @@ const Home = () => {
                 <View>
                   <View style={hangmanStyles.hintContainer}>
                     <Text style={hangmanStyles.subheading}>
-                      {wordDefinition ? wordDefinition : 'OOps, no hint found'}
+                      {wordDefinition
+                        ? wordDefinition
+                        : 'OOps, no definition found'}
                     </Text>
                   </View>
                 </View>

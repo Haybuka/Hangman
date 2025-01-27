@@ -115,8 +115,6 @@ const Home = () => {
       }
     }
 
-    // handleLetterGuessing
-
     const randomLetterGuess = Math.floor(Math.random() * wordLeft.length);
     console.log(
       'guessed word ',
@@ -124,6 +122,7 @@ const Home = () => {
       'hint letter :',
       wordLeft[randomLetterGuess]
     );
+    handleLetterGuessing(wordLeft[randomLetterGuess]);
   };
 
   return (

@@ -147,7 +147,7 @@ const Home = () => {
             {wrongGuess !== guessedCount && (
               <>
                 <Feather name="heart" color={'#AE0A25'} size={30} />
-                <Text style={hangmanStyles.liveCount}>{wrongGuess}</Text>
+                <Text style={hangmanStyles.liveCount}>{5 - wrongGuess}</Text>
               </>
             )}
           </View>
@@ -170,17 +170,28 @@ const Home = () => {
           )}
         </View>
         <LetterDisplay word={word} guessedWord={guessedWord} />
+        <TouchableOpacity style={hangmanStyles.infoIcon}>
+          <FontAwesome5 name="info" size={15} color={colors.ash} />
+        </TouchableOpacity>
         <View style={hangmanStyles.hintParent}>
           {!isOver && (
             <View>
               {isFetched ? (
                 <View>
                   <View style={hangmanStyles.hintContainer}>
-                    <Text style={hangmanStyles.subheading}>
-                      {wordDefinition
-                        ? wordDefinition
-                        : 'OOps, no definition found'}
-                    </Text>
+                    {wordDefinition ? (
+                      <TouchableOpacity onPress={handleHintSelect}>
+                        <FontAwesome5
+                          name="info"
+                          size={25}
+                          color={colors.orange}
+                        />
+                      </TouchableOpacity>
+                    ) : (
+                      <Text style={hangmanStyles.subheading}>
+                        'OOps, no definition found
+                      </Text>
+                    )}
                   </View>
                 </View>
               ) : (

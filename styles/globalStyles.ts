@@ -6,6 +6,7 @@ export const colors = {
   green: '#52B788',
   orange: '#FFBA08',
   transparent: 'transparent',
+  gray: '#adb5bd',
 };
 
 export const font = {

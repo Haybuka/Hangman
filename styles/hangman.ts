@@ -94,4 +94,12 @@ export const hangmanStyles = StyleSheet.create({
   hintText: {
     textAlign: 'center',
   },
+  infoIcon: {
+    backgroundColor: colors.gray,
+    height: 30,
+    width: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+  },
 });

@@ -23,6 +23,7 @@ import { hangmanStyles } from '@/styles/hangman';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { colors } from '@/styles/globalStyles';
+import HintDefinition from '@/components/HintDefinition';
 
 const Home = () => {
   const guessedCount = 6;
@@ -125,12 +126,12 @@ const Home = () => {
     }
 
     const randomLetterGuess = Math.floor(Math.random() * wordLeft.length);
-    console.log(
-      'guessed word ',
-      guessedWord,
-      'hint letter :',
-      wordLeft[randomLetterGuess]
-    );
+    // console.log(
+    //   'guessed word ',
+    //   guessedWord,
+    //   'hint letter :',
+    //   wordLeft[randomLetterGuess]
+    // );
     handleLetterGuessing(wordLeft[randomLetterGuess]);
   };
 
@@ -180,13 +181,7 @@ const Home = () => {
                 <View>
                   <View style={hangmanStyles.hintContainer}>
                     {wordDefinition ? (
-                      <TouchableOpacity onPress={handleHintSelect}>
-                        <FontAwesome5
-                          name="info"
-                          size={25}
-                          color={colors.orange}
-                        />
-                      </TouchableOpacity>
+                      <HintDefinition hint={wordDefinition} />
                     ) : (
                       <Text style={hangmanStyles.subheading}>
                         'OOps, no definition found

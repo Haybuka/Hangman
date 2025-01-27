@@ -5,9 +5,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { colors } from '@/styles/globalStyles';
 import { FontAwesome5 } from '@expo/vector-icons';
+import GameModal from '../GameModal';
 
 type HintDefinitionProp = {
   hint?: string;
@@ -19,8 +20,15 @@ const HintDefinition = ({
   isDefinitionFetched,
   isGameOver,
 }: HintDefinitionProp) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const handleHintModal = () => {
     console.log(hint, 'hint');
+    toggleModal();
+  };
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
   };
   return (
     <View style={styles.hintParent}>
@@ -28,18 +36,25 @@ const HintDefinition = ({
         <View>
           {isDefinitionFetched ? (
             <View style={styles.hintContainer}>
-              {hint ? (
-                <TouchableOpacity
-                  style={styles.infoIcon}
-                  onPress={handleHintModal}
-                >
-                  <FontAwesome5 name="info" size={13} color={colors.ash} />
-                </TouchableOpacity>
-              ) : (
-                <Text style={styles.subheading}>
-                  'OOps, no definition found
-                </Text>
-              )}
+              <TouchableOpacity
+                style={styles.infoIcon}
+                onPress={handleHintModal}
+              >
+                <FontAwesome5 name="info" size={13} color={colors.ash} />
+              </TouchableOpacity>
+
+              <GameModal
+                isModalVisible={isModalVisible}
+                handleModalClose={toggleModal}
+              >
+                {hint ? (
+                  <Text style={styles.subheading}>{hint}</Text>
+                ) : (
+                  <Text style={styles.subheading}>
+                    'OOps, no definition found
+                  </Text>
+                )}
+              </GameModal>
             </View>
           ) : (
             <ActivityIndicator size="large" color="#29427A" />

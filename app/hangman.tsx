@@ -1,4 +1,10 @@
-import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import alphabets from '@/utils/alphabets';
 import hangmanWords from '@/utils/hangmanWords';
@@ -97,6 +103,23 @@ const Home = () => {
     handleGuessCount(word);
   }, [word]);
 
+  const handleHintSelect = () => {
+    let wordLeft = '';
+
+    for (let index = 0; index < word.length; index++) {
+      const element = word[index];
+      if (guessedWord.includes(element)) {
+        continue;
+      } else {
+        wordLeft += element;
+      }
+    }
+
+    // handleLetterGuessing
+
+    console.log('guessed word ', guessedWord);
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -115,7 +138,9 @@ const Home = () => {
             )}
           </View>
           <Text style={hangmanStyles.heading}> {word}</Text>
-          <FontAwesome5 name="lightbulb" size={25} color={colors.orange} />
+          <TouchableOpacity onPress={handleHintSelect}>
+            <FontAwesome5 name="lightbulb" size={25} color={colors.orange} />Í
+          </TouchableOpacity>
         </View>
         <View
           style={[

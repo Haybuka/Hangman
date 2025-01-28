@@ -15,11 +15,13 @@ type GameModalProp = {
   isModalVisible: boolean;
   handleModalClose: () => void;
   children: React.ReactNode;
+  hideDefaultCancel: boolean;
 };
 const GameModal = ({
   isModalVisible,
   handleModalClose,
   children,
+  hideDefaultCancel,
 }: GameModalProp) => {
   return (
     <Modal
@@ -33,11 +35,13 @@ const GameModal = ({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <View>
-            <Pressable style={styles.cancelIcon} onPress={handleModalClose}>
-              <Entypo name="cross" size={20} color={colors.ash} />
-            </Pressable>
-          </View>
+          {!hideDefaultCancel && (
+            <View>
+              <Pressable style={styles.cancelIcon} onPress={handleModalClose}>
+                <Entypo name="cross" size={20} color={colors.ash} />
+              </Pressable>
+            </View>
+          )}
           <View style={styles.children}>{children}</View>
         </View>
       </View>

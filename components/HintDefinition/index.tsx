@@ -44,6 +44,7 @@ const HintDefinition = ({
               </TouchableOpacity>
 
               <GameModal
+                hideDefaultCancel={false}
                 isModalVisible={isModalVisible}
                 handleModalClose={toggleModal}
               >

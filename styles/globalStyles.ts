@@ -8,6 +8,7 @@ export const colors = {
   transparent: 'transparent',
   gray: '#adb5bd',
   ash_opacity: '#33333360',
+  gray_white: '#fbf8f86f',
 };
 
 export const font = {

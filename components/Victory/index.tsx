@@ -24,20 +24,27 @@ const VictoryDisplay = () => {
   const windowWidth = Dimensions.get('window').width;
 
   const word = 'Hang man';
-
+  const imgSrc = require('@/assets/images/triumph.jpg');
   return (
     <View>
       <GameModal
         hideDefaultCancel={false}
         isModalVisible={isModalVisible}
         handleModalClose={toggleModal}
+        bgColor={colors.gray_white}
       >
-        <View style={{ width: windowWidth - 100 }}>
+        <View
+          style={{ width: windowWidth - 100, backgroundColor: '#fbf8f86f' }}
+        >
           <Text style={styles.heading}> Victory</Text>
           <View style={styles.imageContainer}>
             <Image
-              source={require('@/assets/images/triumph.jpg')}
-              style={{ width: '100%', height: '100%' }}
+              style={[styles.image, { resizeMode: 'contain' }]}
+              source={imgSrc}
+            />
+            <Image
+              style={[styles.image, { resizeMode: 'contain' }]}
+              source={imgSrc}
             />
           </View>
           <View style={styles.btnGroup}>
@@ -59,11 +66,18 @@ const VictoryDisplay = () => {
 export default VictoryDisplay;
 
 const styles = StyleSheet.create({
-  imageContainer: {
-    width: 100,
+  image: {
     height: 100,
-    backgroundColor: 'red',
+    width: 200,
+    transform: 'rotate(-20deg) translateY(0%)',
+    position: 'absolute',
+    top: -50,
+  },
+  imageContainer: {
+    height: 100,
+    position: 'relative',
     overflow: 'hidden',
+    padding: 10,
   },
   btnGroup: {
     flexDirection: 'column',

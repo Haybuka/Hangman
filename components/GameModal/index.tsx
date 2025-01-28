@@ -8,12 +8,14 @@ type GameModalProp = {
   handleModalClose: () => void;
   children: React.ReactNode;
   hideDefaultCancel: boolean;
+  bgColor?: string;
 };
 const GameModal = ({
   isModalVisible,
   handleModalClose,
   children,
   hideDefaultCancel,
+  bgColor,
 }: GameModalProp) => {
   return (
     <Modal
@@ -27,14 +29,16 @@ const GameModal = ({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          {!hideDefaultCancel && (
-            <View>
-              <Pressable style={styles.cancelIcon} onPress={handleModalClose}>
-                <Entypo name="cross" size={20} color={colors.ash} />
-              </Pressable>
-            </View>
-          )}
-          <View style={styles.children}>{children}</View>
+          <View style={[styles.modalContainer, { backgroundColor: bgColor }]}>
+            {!hideDefaultCancel && (
+              <View>
+                <Pressable style={styles.cancelIcon} onPress={handleModalClose}>
+                  <Entypo name="cross" size={20} color={colors.ash} />
+                </Pressable>
+              </View>
+            )}
+            <View style={styles.children}>{children}</View>
+          </View>
         </View>
       </View>
     </Modal>
@@ -44,6 +48,10 @@ const GameModal = ({
 export default GameModal;
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    borderRadius: 20,
+    padding: 15,
+  },
   children: {
     marginVertical: 10,
   },
@@ -62,9 +70,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.ash_opacity,
   },
   modalView: {
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     borderRadius: 20,
-    padding: 15,
+
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,

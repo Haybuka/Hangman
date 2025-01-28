@@ -10,8 +10,16 @@ import React, { useState } from 'react';
 import GameModal from '../GameModal';
 import { colors, font } from '@/styles/globalStyles';
 import Button from '../Button';
+import LetterDisplay from '../LetterDisplay';
 
-const VictoryDisplay = () => {
+type VictoryDisplayProp = {
+  handleGenerateWord: () => void;
+  isVictoryModal: boolean;
+};
+const VictoryDisplay = ({
+  handleGenerateWord,
+  isVictoryModal,
+}: VictoryDisplayProp) => {
   const [isModalVisible, setIsModalVisible] = useState(true);
 
   const handleHintModal = () => {
@@ -20,11 +28,17 @@ const VictoryDisplay = () => {
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
+    console.log(isVictoryModal, 'victory modal');
   };
   const windowWidth = Dimensions.get('window').width;
 
-  const word = 'Hang man';
+  const word = 'Hangman';
   const imgSrc = require('@/assets/images/triumph.jpg');
+
+  const handleNextWord = () => {
+    handleGenerateWord();
+    toggleModal();
+  };
   return (
     <View>
       <GameModal
@@ -41,23 +55,30 @@ const VictoryDisplay = () => {
             <Image
               style={[
                 styles.image,
-                { transform: 'rotate(260deg) translate(90%,-50%)' },
+                { transform: 'rotate(260deg) translate(75%,-58%)' },
               ]}
               source={imgSrc}
             />
             <Image
               style={[
                 styles.image,
-                { transform: 'rotate(340deg) translate(60%,0%)' },
+                { transform: 'rotate(340deg) translate(58%,15%)' },
               ]}
               source={imgSrc}
             />
+          </View>
+          <View style={styles.wordContainer}>
+            {[...word].map((letter, id) => (
+              <View key={id} style={styles.words}>
+                <Text style={[styles.letter]}>{letter}</Text>
+              </View>
+            ))}
           </View>
           <View style={styles.btnGroup}>
             <Button
               otherStyles={{ backgroundColor: colors.red }}
               text="Next"
-              handlePress={() => console.log('next')}
+              handlePress={handleNextWord}
             />
             <TouchableOpacity style={styles.btn} onPress={toggleModal}>
               <Text style={styles.btnText}>Exit</Text>
@@ -85,8 +106,32 @@ const styles = StyleSheet.create({
     height: 100,
     position: 'relative',
     overflow: 'hidden',
-    padding: 10,
   },
+  wordContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  words: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#3333335b',
+    width: 30,
+    height: 30,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: 8,
+    textAlign: 'center',
+  },
+  letter: {
+    fontSize: 18,
+    fontWeight: '400',
+    textTransform: 'uppercase',
+    fontFamily: font.default,
+  },
+
   btnGroup: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -104,10 +149,11 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 20,
     textAlign: 'center',
-    color: colors.ash,
     textTransform: 'uppercase',
     fontFamily: font.default,
     marginVertical: 10,
-    fontWeight: 'black',
+    color: colors.green,
+    fontWeight: '700',
+    letterSpacing: 10,
   },
 });

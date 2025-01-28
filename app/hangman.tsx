@@ -127,12 +127,7 @@ const Home = () => {
     }
 
     const randomLetterGuess = Math.floor(Math.random() * wordLeft.length);
-    // console.log(
-    //   'guessed word ',
-    //   guessedWord,
-    //   'hint letter :',
-    //   wordLeft[randomLetterGuess]
-    // );
+
     handleLetterGuessing(wordLeft[randomLetterGuess]);
   };
 
@@ -171,7 +166,12 @@ const Home = () => {
             <Feather name="check" color={colors.green} size={30} />
           )}
         </View>
-        <VictoryDisplay />
+        <VictoryDisplay
+          isVictoryModal={
+            handleWordCount(guessedWord) === handleWordCount(word)
+          }
+          handleGenerateWord={generateWord}
+        />
         <LetterDisplay word={word} guessedWord={guessedWord} />
 
         <HintDefinition

@@ -7,6 +7,7 @@ export const colors = {
   orange: '#FFBA08',
   transparent: 'transparent',
   gray: '#adb5bd',
+  ash_opacity: '#33333360',
 };
 
 export const font = {

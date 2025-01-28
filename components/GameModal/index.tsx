@@ -27,6 +27,9 @@ const GameModal = ({
       transparent={true}
       visible={isModalVisible}
       onRequestClose={handleModalClose}
+      style={{
+        padding: 10,
+      }}
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
@@ -60,14 +63,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#33333360',
+    backgroundColor: colors.ash_opacity,
   },
   modalView: {
-    // margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 15,
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -75,5 +77,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    margin: 5,
   },
 });

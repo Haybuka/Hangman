@@ -91,9 +91,10 @@ const styles = StyleSheet.create({
   },
   subheading: {
     textAlign: 'center',
-    fontSize: 14,
-    color: colors.ash,
+    fontSize: 15,
+    color: 'colors.ash',
     fontFamily: 'SpaceMono',
     backgroundColor: colors.transparent,
+    flexWrap: 'wrap',
   },
 });

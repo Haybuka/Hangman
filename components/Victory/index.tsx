@@ -28,7 +28,7 @@ const VictoryDisplay = () => {
   return (
     <View>
       <GameModal
-        hideDefaultCancel={false}
+        hideDefaultCancel
         isModalVisible={isModalVisible}
         handleModalClose={toggleModal}
         bgColor={colors.gray_white}
@@ -39,11 +39,17 @@ const VictoryDisplay = () => {
           <Text style={styles.heading}> Victory</Text>
           <View style={styles.imageContainer}>
             <Image
-              style={[styles.image, { resizeMode: 'contain' }]}
+              style={[
+                styles.image,
+                { transform: 'rotate(260deg) translate(90%,-50%)' },
+              ]}
               source={imgSrc}
             />
             <Image
-              style={[styles.image, { resizeMode: 'contain' }]}
+              style={[
+                styles.image,
+                { transform: 'rotate(340deg) translate(60%,0%)' },
+              ]}
               source={imgSrc}
             />
           </View>
@@ -69,9 +75,11 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 200,
-    transform: 'rotate(-20deg) translateY(0%)',
+    resizeMode: 'contain',
     position: 'absolute',
     top: -50,
+
+    transformOrigin: 'bottom right',
   },
   imageContainer: {
     height: 100,

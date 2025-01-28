@@ -24,6 +24,7 @@ import { Feather, FontAwesome5 } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { colors } from '@/styles/globalStyles';
 import HintDefinition from '@/components/HintDefinition';
+import VictoryDisplay from '@/components/Victory';
 
 const Home = () => {
   const guessedCount = 6;
@@ -170,6 +171,7 @@ const Home = () => {
             <Feather name="check" color={colors.green} size={30} />
           )}
         </View>
+        <VictoryDisplay />
         <LetterDisplay word={word} guessedWord={guessedWord} />
 
         <HintDefinition

@@ -23,7 +23,6 @@ const HintDefinition = ({
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleHintModal = () => {
-    console.log(hint, 'hint');
     toggleModal();
   };
 

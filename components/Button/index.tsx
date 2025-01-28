@@ -4,6 +4,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 import React from 'react';
 import { colors, font } from '@/styles/globalStyles';
@@ -11,11 +13,22 @@ import { colors, font } from '@/styles/globalStyles';
 type ButtonProp = {
   handlePress: () => void;
   text: string;
+  otherStyles?: ViewStyle;
 };
-const Button = ({ handlePress, text }: ButtonProp) => {
+const Button = ({ handlePress, text, otherStyles }: ButtonProp) => {
   return (
-    <TouchableOpacity style={styles.btn} onPress={handlePress}>
-      <Text style={styles.text}>{text}</Text>
+    <TouchableOpacity
+      style={[styles.btn, { ...otherStyles }]}
+      onPress={handlePress}
+    >
+      <Text
+        style={[
+          styles.text,
+          { color: otherStyles ? colors.white : colors.ash },
+        ]}
+      >
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };

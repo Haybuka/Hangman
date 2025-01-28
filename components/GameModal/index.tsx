@@ -1,12 +1,4 @@
-import {
-  Dimensions,
-  Modal,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Modal, Pressable, StyleSheet, View } from 'react-native';
 // import Modal from 'react-native-modal';
 import { colors } from '@/styles/globalStyles';
 import Entypo from '@expo/vector-icons/Entypo';

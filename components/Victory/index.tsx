@@ -1,4 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Dimensions,
+  Image,
+} from 'react-native';
 import React, { useState } from 'react';
 import GameModal from '../GameModal';
 import { colors, font } from '@/styles/globalStyles';
@@ -14,8 +21,10 @@ const VictoryDisplay = () => {
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
+  const windowWidth = Dimensions.get('window').width;
 
   const word = 'Hang man';
+
   return (
     <View>
       <GameModal
@@ -23,16 +32,21 @@ const VictoryDisplay = () => {
         isModalVisible={isModalVisible}
         handleModalClose={toggleModal}
       >
-        <View>
+        <View style={{ width: windowWidth - 100 }}>
           <Text style={styles.heading}> Victory</Text>
-          <Text>VictoryDisplay</Text>
-          <View>
+          <View style={styles.imageContainer}>
+            <Image
+              source={require('@/assets/images/triumph.jpg')}
+              style={{ width: '100%', height: '100%' }}
+            />
+          </View>
+          <View style={styles.btnGroup}>
             <Button
               otherStyles={{ backgroundColor: colors.red }}
               text="Next"
               handlePress={() => console.log('next')}
             />
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={toggleModal}>
               <Text style={styles.btnText}>Exit</Text>
             </TouchableOpacity>
           </View>
@@ -45,7 +59,17 @@ const VictoryDisplay = () => {
 export default VictoryDisplay;
 
 const styles = StyleSheet.create({
-  btnGroup: {},
+  imageContainer: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'red',
+    overflow: 'hidden',
+  },
+  btnGroup: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   btn: {
     backgroundColor: colors.white,
     padding: 10,
@@ -62,5 +86,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontFamily: font.default,
     marginVertical: 10,
+    fontWeight: 'black',
   },
 });

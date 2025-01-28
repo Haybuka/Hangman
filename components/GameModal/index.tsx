@@ -30,12 +30,12 @@ const GameModal = ({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <View style={{ backgroundColor: 'green' }}>
+          <View>
             <Pressable style={styles.cancelIcon} onPress={handleModalClose}>
               <Entypo name="cross" size={20} color={colors.ash} />
             </Pressable>
           </View>
-          <View>{children}</View>
+          <View style={styles.children}>{children}</View>
         </View>
       </View>
     </Modal>
@@ -45,6 +45,9 @@ const GameModal = ({
 export default GameModal;
 
 const styles = StyleSheet.create({
+  children: {
+    marginVertical: 10,
+  },
   cancelIcon: {
     backgroundColor: colors.gray,
     height: 25,
@@ -60,11 +63,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#33333360',
   },
   modalView: {
-    margin: 20,
+    // margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
+    padding: 15,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

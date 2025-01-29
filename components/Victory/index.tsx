@@ -22,6 +22,7 @@ const VictoryDisplay = ({
 }: VictoryDisplayProp) => {
   const [isModalVisible, setIsModalVisible] = useState(true);
 
+  console.log(isVictoryModal);
   const handleHintModal = () => {
     toggleModal();
   };
@@ -43,8 +44,8 @@ const VictoryDisplay = ({
     <View>
       <GameModal
         hideDefaultCancel
-        isModalVisible={isModalVisible}
-        handleModalClose={toggleModal}
+        isModalVisible={isVictoryModal}
+        handleModalClose={handleNextWord}
         bgColor={colors.gray_white}
       >
         <View
@@ -80,7 +81,7 @@ const VictoryDisplay = ({
               text="Next"
               handlePress={handleNextWord}
             />
-            <TouchableOpacity style={styles.btn} onPress={toggleModal}>
+            <TouchableOpacity style={styles.btn} onPress={handleNextWord}>
               <Text style={styles.btnText}>Exit</Text>
             </TouchableOpacity>
           </View>

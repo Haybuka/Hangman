@@ -171,6 +171,10 @@ const Home = () => {
             handleWordCount(guessedWord) === handleWordCount(word)
           }
           handleGenerateWord={generateWord}
+          word={word}
+          addToWordList={() =>
+            handleAddToWordlist(word, wordDefinition ? wordDefinition : '')
+          }
         />
         <LetterDisplay word={word} guessedWord={guessedWord} />
 
@@ -208,14 +212,14 @@ const Home = () => {
               )}
             </View>
           )}
-          {isOver && (
+          {/* {isOver && (
             <Button
               text="Add to Word List"
               handlePress={() =>
                 handleAddToWordlist(word, wordDefinition ? wordDefinition : '')
               }
             />
-          )}
+          )} */}
         </View>
         <View style={hangmanStyles.btnGroup}>
           <HomeIcon />

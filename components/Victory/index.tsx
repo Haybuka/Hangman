@@ -6,40 +6,31 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import GameModal from '../GameModal';
 import { colors, font } from '@/styles/globalStyles';
 import Button from '../Button';
-import LetterDisplay from '../LetterDisplay';
 
 type VictoryDisplayProp = {
   handleGenerateWord: () => void;
   isVictoryModal: boolean;
+  word: string;
+  addToWordList: () => void;
 };
 const VictoryDisplay = ({
   handleGenerateWord,
   isVictoryModal,
+  word,
+  addToWordList,
 }: VictoryDisplayProp) => {
-  const [isModalVisible, setIsModalVisible] = useState(true);
-
-  console.log(isVictoryModal);
-  const handleHintModal = () => {
-    toggleModal();
-  };
-
-  const toggleModal = () => {
-    setIsModalVisible(!isModalVisible);
-    console.log(isVictoryModal, 'victory modal');
-  };
   const windowWidth = Dimensions.get('window').width;
 
-  const word = 'Hangman';
   const imgSrc = require('@/assets/images/triumph.jpg');
 
   const handleNextWord = () => {
     handleGenerateWord();
-    toggleModal();
   };
+
   return (
     <View>
       <GameModal
@@ -81,8 +72,8 @@ const VictoryDisplay = ({
               text="Next"
               handlePress={handleNextWord}
             />
-            <TouchableOpacity style={styles.btn} onPress={handleNextWord}>
-              <Text style={styles.btnText}>Exit</Text>
+            <TouchableOpacity style={styles.btn} onPress={addToWordList}>
+              <Text style={styles.btnText}>Add to word list</Text>
             </TouchableOpacity>
           </View>
         </View>
